@@ -72,7 +72,7 @@
   - `01029918865`
   - `01036555502` (الرقم الرئيسي للاتصال المباشر والزر العائم في الهواتف)
 - **صفحة الفيسبوك:** https://www.facebook.com/share/1QuKXM76UT/
-- **حساب الانستجرام:** https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm
+- **حساب الانستجرام:** https://www.instagram.com/elmandara.realestate?avpt=dG8yNjBwc2dwMnN2
 - **رابط خرائط جوجل:** https://maps.app.goo.gl/RU2Nf9bBf8TonQaBA
 
 ---

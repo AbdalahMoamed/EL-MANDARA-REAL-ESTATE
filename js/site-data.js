@@ -36,7 +36,7 @@ window.GOLDEN_VIEW_CONFIG = {
   googleMapsUrl: "https://maps.app.goo.gl/RU2Nf9bBf8TonQaBA",
   googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13813.067302480646!2d32.5312000!3d29.9734000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145625bf21e73995%3A0x6b876d7fb1bfb488!2z2KfZhNmF2KzZhdi5INin2YTYt9io2Yog2KfZhNiz2YjZitiz!5e0!3m2!1sar!2seg!4v1700000000000!5m2!1sar!2seg",
   facebookUrl: "https://www.facebook.com/share/1QuKXM76UT/",
-  instagramUrl: "https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm",
+  instagramUrl: "https://www.instagram.com/elmandara.realestate?avpt=dG8yNjBwc2dwMnN2",
   tiktokUrl: "https://www.tiktok.com/@elmndara4?is_from_webapp=1",
   socialMedia: {
     facebook: {
@@ -45,7 +45,7 @@ window.GOLDEN_VIEW_CONFIG = {
       label: "صفحة الفيسبوك الرسمية"
     },
     instagram: {
-      url: "https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm",
+      url: "https://www.instagram.com/elmandara.realestate?avpt=dG8yNjBwc2dwMnN2",
       enabled: true,
       label: "حساب الانستجرام الرسمي"
     },

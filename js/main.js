@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ttLinks = document.querySelectorAll('a.social-tt, a[data-social="tiktok"]');
 
     const fbUrl = (cfg.socialMedia?.facebook?.url) || cfg.facebookUrl || "https://www.facebook.com/share/1QuKXM76UT/";
-    const igUrl = (cfg.socialMedia?.instagram?.url) || cfg.instagramUrl || "https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm";
+    const igUrl = (cfg.socialMedia?.instagram?.url) || cfg.instagramUrl || "https://www.instagram.com/elmandara.realestate?avpt=dG8yNjBwc2dwMnN2";
     const ttUrl = (cfg.socialMedia?.tiktok?.url) || cfg.tiktokUrl || "https://www.tiktok.com/@elmndara4?is_from_webapp=1";
 
     const fbEnabled = cfg.socialMedia?.facebook?.enabled !== false;

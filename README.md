@@ -101,7 +101,7 @@
   ```javascript
   socialMedia: {
     facebook: { url: "https://www.facebook.com/share/1QuKXM76UT/", enabled: true },
-    instagram: { url: "https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm", enabled: true },
+    instagram: { url: "https://www.instagram.com/elmandara.realestate?avpt=dG8yNjBwc2dwMnN2", enabled: true },
     tiktok: { url: "https://www.tiktok.com/@elmndara4?is_from_webapp=1", enabled: true }
   }
   ```
