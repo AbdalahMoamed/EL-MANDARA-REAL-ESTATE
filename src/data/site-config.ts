@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   developerName: 'El Mandara Real Estate',
   developerNameArabic: 'شركة المندرة للتسويق العقاري',
   companyLogo: '/images/brand/el-mandara-company-logo.png',
-  projectLogo: '/images/brand/golden-view-compound-logo.png',
+  projectLogo: '/images/brand/golden-view-compound-logo.jpg',
   slogan: 'حياة متكاملة في قلب السويس',
   headlineArabic: 'حياة متكاملة في قلب السويس',
   supportingTextArabic:

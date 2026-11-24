@@ -160,7 +160,7 @@ export default function GalleryPage() {
                   </p>
 
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-                    <span>صوره ثلاثي الأبعاد معتمد</span>
+                    <span>صوره ثلاثيه الأبعاد معتمده</span>
                     <span className="text-[#C8B18A] font-semibold group-hover:underline">
                       تكبير الصوره ↗
                     </span>

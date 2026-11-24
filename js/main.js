@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <p style="font-size: 0.85rem; color: #64748B; line-height: 1.6;">${item.description}</p>
             </div>
             <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #EAE6DF; font-size: 0.75rem; color: #C8B18A; font-weight: 700; display: flex; justify-content: space-between; align-items: center;">
-              <span>صوره ثلاثي الأبعاد معتمد</span>
+              <span>صوره ثلاثيه الأبعاد معتمده</span>
               <span>تكبير الصوره ↗</span>
             </div>
           </div>
@@ -351,10 +351,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectLogos = document.querySelectorAll('.brand-project-logo, [data-logo="project"]');
 
     const companyLogoSrc = cfg.companyLogo || "public/images/brand/el-mandara-company-logo.png";
-    const companyLogoFallback = cfg.companyLogoFallback || "public/images/brand/golden-view-logo.png";
+    const companyLogoFallback = cfg.companyLogoFallback || "public/images/brand/golden-view-compound-logo.jpg";
 
-    const projectLogoSrc = cfg.projectLogo || "public/images/brand/golden-view-compound-logo.png";
-    const projectLogoFallback = cfg.projectLogoFallback || "public/images/brand/golden-view-logo.png";
+    const projectLogoSrc = cfg.projectLogo || "public/images/brand/golden-view-compound-logo.jpg";
+    const projectLogoFallback = cfg.projectLogoFallback || "public/images/brand/golden-view-compound-logo.jpg";
 
     companyLogos.forEach(img => {
       if (img.tagName === 'IMG') {
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
               img.src = companyLogoFallback;
             } else {
               img.onerror = null;
-              img.src = 'public/images/brand/golden-view-logo.png';
+              img.src = 'public/images/brand/golden-view-compound-logo.jpg';
             }
           };
         }
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
               img.src = projectLogoFallback;
             } else {
               img.onerror = null;
-              img.src = 'public/images/brand/golden-view-logo.png';
+              img.src = 'public/images/brand/golden-view-compound-logo.jpg';
             }
           };
         }

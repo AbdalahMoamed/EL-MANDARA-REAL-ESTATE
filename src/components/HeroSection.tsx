@@ -35,7 +35,7 @@ export default function HeroSection() {
         {/* Project Logo Overlay */}
         <div className="relative w-56 sm:w-72 md:w-80 h-16 sm:h-20 mx-auto mb-6">
           <Image
-            src={siteConfig.projectLogo || "/images/brand/golden-view-compound-logo.png"}
+            src={siteConfig.projectLogo || "/images/brand/golden-view-compound-logo.jpg"}
             alt="شعار كمبوند Golden View السويس"
             fill
             className="object-contain brand-project-logo"

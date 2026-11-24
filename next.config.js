@@ -4,8 +4,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Ensure output can be exported statically or deployed to Vercel/Node
-  output: 'standalone',
+  // Support subdirectory hosting (e.g., GitHub Pages) when configured
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
 };
 
 module.exports = nextConfig;
