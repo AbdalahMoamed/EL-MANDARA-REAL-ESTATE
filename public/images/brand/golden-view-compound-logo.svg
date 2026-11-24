@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gvGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEECB" />
+      <stop offset="40%" stop-color="#D4AF37" />
+      <stop offset="80%" stop-color="#C8B18A" />
+      <stop offset="100%" stop-color="#9E782F" />
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" rx="12" fill="#0A1322" />
+
+  <!-- Monogram G + V with Towers -->
+  <g transform="translate(250, 72)">
+    <!-- Stylized curved G -->
+    <path d="M 12 -44 C -45 -48 -68 -5 -56 26 C -46 50 -12 56 18 46 C -12 38 -32 24 -34 0 C -36 -20 -15 -32 12 -28 Z" fill="url(#gvGold)" />
+
+    <!-- Stylized V -->
+    <path d="M -15 -26 L 18 36 L 48 -26 L 30 -26 L 18 12 L 0 -26 Z" fill="url(#gvGold)" />
+
+    <!-- Skyscraper Bars inside the G curve -->
+    <rect x="-30" y="2" width="7" height="24" fill="url(#gvGold)" rx="1" />
+    <rect x="-20" y="-8" width="7" height="34" fill="url(#gvGold)" rx="1" />
+    <rect x="-10" y="-18" width="7" height="44" fill="url(#gvGold)" rx="1" />
+
+    <!-- Bottom Wave Under Monogram -->
+    <path d="M -60 38 Q -10 18 55 42 Q 10 32 -35 48 Z" fill="url(#gvGold)" />
+  </g>
+
+  <!-- Typography -->
+  <g text-anchor="middle">
+    <!-- Main Headline -->
+    <text x="250" y="162" font-family="'Cinzel', 'Cairo', 'Times New Roman', serif" font-size="30" font-weight="900" letter-spacing="5" fill="url(#gvGold)" filter="url(#goldGlow)">
+      GOLDEN VIEW
+    </text>
+
+    <!-- COMPOUND with Lines -->
+    <line x1="80" y1="184" x2="160" y2="184" stroke="url(#gvGold)" stroke-width="1.5" stroke-opacity="0.8" />
+    <text x="250" y="189" font-family="'Montserrat', 'Cairo', sans-serif" font-size="13" font-weight="700" letter-spacing="8" fill="url(#gvGold)">
+      COMPOUND
+    </text>
+    <line x1="340" y1="184" x2="420" y2="184" stroke="url(#gvGold)" stroke-width="1.5" stroke-opacity="0.8" />
+
+    <!-- SUEZ -->
+    <text x="250" y="214" font-family="'Montserrat', 'Cairo', sans-serif" font-size="11" font-weight="600" letter-spacing="6" fill="#A4B3C6">
+      SUEZ
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="100%" height="100%">
+  <defs>
+    <linearGradient id="aerialSky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="goldRoof" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#996515" />
+    </linearGradient>
+  </defs>
+
+  <!-- Top-down / High Angle Perspective -->
+  <rect width="1000" height="650" fill="url(#aerialSky)" />
+
+  <!-- Road Cross Intersection in Compound -->
+  <rect x="0" y="320" width="1000" height="90" fill="#243042" />
+  <rect x="440" y="0" width="120" height="650" fill="#243042" />
+
+  <!-- Roundabout in Center with Fountain -->
+  <circle cx="500" cy="365" r="95" fill="#1B2433" stroke="#D4AF37" stroke-width="2" />
+  <circle cx="500" cy="365" r="70" fill="#14532D" />
+  <circle cx="500" cy="365" r="35" fill="#0284C7" stroke="#38BDF8" stroke-width="2" />
+  <circle cx="500" cy="365" r="10" fill="#FFFFFF" />
+
+  <!-- Building Blocks (4 Feddans Layout) -->
+  <!-- Quad 1 (Top Left) -->
+  <g transform="translate(100, 70)">
+    <rect x="0" y="0" width="280" height="190" rx="4" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5" />
+    <rect x="20" y="20" width="240" height="40" fill="url(#goldRoof)" opacity="0.8" rx="2" />
+    <text x="140" y="120" font-family="'Cairo', sans-serif" font-size="14" font-weight="700" fill="#94A3B8" text-anchor="middle">المبنى السكني A</text>
+  </g>
+
+  <!-- Quad 2 (Top Right) -->
+  <g transform="translate(620, 70)">
+    <rect x="0" y="0" width="280" height="190" rx="4" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5" />
+    <rect x="20" y="20" width="240" height="40" fill="url(#goldRoof)" opacity="0.8" rx="2" />
+    <text x="140" y="120" font-family="'Cairo', sans-serif" font-size="14" font-weight="700" fill="#94A3B8" text-anchor="middle">المبنى السكني B</text>
+  </g>
+
+  <!-- Quad 3 (Bottom Left - Commercial & Admin) -->
+  <g transform="translate(100, 460)">
+    <rect x="0" y="0" width="280" height="150" rx="4" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5" />
+    <rect x="20" y="20" width="240" height="30" fill="url(#goldRoof)" opacity="0.8" rx="2" />
+    <text x="140" y="90" font-family="'Cairo', sans-serif" font-size="14" font-weight="700" fill="#94A3B8" text-anchor="middle">الوحدات التجارية والإدارية</text>
+  </g>
+
+  <!-- Quad 4 (Bottom Right - Residential) -->
+  <g transform="translate(620, 460)">
+    <rect x="0" y="0" width="280" height="150" rx="4" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5" />
+    <rect x="20" y="20" width="240" height="30" fill="url(#goldRoof)" opacity="0.8" rx="2" />
+    <text x="140" y="90" font-family="'Cairo', sans-serif" font-size="14" font-weight="700" fill="#94A3B8" text-anchor="middle">المبنى السكني C</text>
+  </g>
+
+  <!-- Label Badge -->
+  <rect x="30" y="30" width="370" height="56" rx="6" fill="#0C1420" fill-opacity="0.9" stroke="#D4AF37" stroke-width="1" />
+  <text x="45" y="55" font-family="'Cairo', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">
+    إطلالة علوية على شوارع ومحاور المشروع
+  </text>
+  <text x="45" y="74" font-family="'Cairo', sans-serif" font-size="11" font-weight="500" fill="#D4AF37">
+    تخطيط عمراني متكامل يوزع الحركة والخدمات بذكاء
+  </text>
+</svg>

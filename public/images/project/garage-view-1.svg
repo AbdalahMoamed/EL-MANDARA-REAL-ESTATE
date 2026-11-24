@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="100%" height="100%">
+  <defs>
+    <linearGradient id="garageFloor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E2836" />
+      <stop offset="50%" stop-color="#141D29" />
+      <stop offset="100%" stop-color="#0B1017" />
+    </linearGradient>
+    <linearGradient id="garageCeiling" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#080D14" />
+      <stop offset="100%" stop-color="#1A2536" />
+    </linearGradient>
+    <linearGradient id="ledStrip" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#D4AF37" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ceiling -->
+  <polygon points="0,0 1000,0 850,220 150,220" fill="url(#garageCeiling)" />
+  <!-- Back Wall -->
+  <rect x="150" y="220" width="700" height="180" fill="#131B26" stroke="#25354A" stroke-width="2" />
+  <!-- Epoxied Floor with Reflections -->
+  <polygon points="0,650 1000,650 850,400 150,400" fill="url(#garageFloor)" />
+
+  <!-- LED Strip Lights in Ceiling Perspective -->
+  <line x1="280" y1="20" x2="350" y2="215" stroke="url(#ledStrip)" stroke-width="4" stroke-linecap="round" />
+  <line x1="720" y1="20" x2="650" y2="215" stroke="url(#ledStrip)" stroke-width="4" stroke-linecap="round" />
+  <line x1="500" y1="10" x2="500" y2="215" stroke="#FFFFFF" stroke-width="3" opacity="0.8" />
+
+  <!-- Pillars with Luxury Gold Accents -->
+  <g transform="translate(260, 180)">
+    <rect x="0" y="0" width="45" height="300" fill="#1C2738" stroke="#D4AF37" stroke-width="1.5" />
+    <rect x="0" y="160" width="45" height="30" fill="#D4AF37" opacity="0.85" />
+    <text x="22" y="180" font-family="'Cairo', sans-serif" font-size="12" font-weight="700" fill="#0C1420" text-anchor="middle">A-01</text>
+  </g>
+  <g transform="translate(695, 180)">
+    <rect x="0" y="0" width="45" height="300" fill="#1C2738" stroke="#D4AF37" stroke-width="1.5" />
+    <rect x="0" y="160" width="45" height="30" fill="#D4AF37" opacity="0.85" />
+    <text x="22" y="180" font-family="'Cairo', sans-serif" font-size="12" font-weight="700" fill="#0C1420" text-anchor="middle">A-02</text>
+  </g>
+
+  <!-- Parking Bays Markings -->
+  <!-- Left Bay -->
+  <polygon points="80,640 280,640 330,420 220,420" fill="none" stroke="#D4AF37" stroke-width="3" />
+  <text x="200" y="550" font-family="'Cairo', sans-serif" font-size="16" font-weight="700" fill="#D4AF37" opacity="0.7">موقف خاص 146م²</text>
+  
+  <!-- Right Bay -->
+  <polygon points="720,640 920,640 780,420 670,420" fill="none" stroke="#D4AF37" stroke-width="3" />
+  <text x="760" y="550" font-family="'Cairo', sans-serif" font-size="16" font-weight="700" fill="#D4AF37" opacity="0.7">موقف خاص 265م²</text>
+
+  <!-- Center Lane Arrows -->
+  <polygon points="500,440 485,470 495,470 495,510 505,510 505,470 515,470" fill="#FFFFFF" opacity="0.8" />
+  <polygon points="500,540 480,580 493,580 493,630 507,630 507,580 520,580" fill="#FFFFFF" opacity="0.8" />
+
+  <!-- Signage on Back Wall -->
+  <rect x="380" y="260" width="240" height="50" rx="4" fill="#0C1524" stroke="#D4AF37" stroke-width="1.5" />
+  <text x="500" y="285" font-family="'Cairo', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    جراج خاص لكل وحدة سكنية
+  </text>
+  <text x="500" y="302" font-family="'Cairo', sans-serif" font-size="11" font-weight="500" fill="#D4AF37" text-anchor="middle">
+    GOLDEN VIEW PRIVATE RESIDENTIAL PARKING
+  </text>
+
+  <!-- Title Badge -->
+  <rect x="30" y="30" width="340" height="56" rx="6" fill="#0C1420" fill-opacity="0.9" stroke="#D4AF37" stroke-width="1" />
+  <text x="45" y="55" font-family="'Cairo', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">
+    جراج السيارات الخاص [منظور 1]
+  </text>
+  <text x="45" y="74" font-family="'Cairo', sans-serif" font-size="11" font-weight="500" fill="#D4AF37">
+    أماكن مخصصة ومؤمنة بالكامل لقاطني الوحدات السكنية
+  </text>
+</svg>

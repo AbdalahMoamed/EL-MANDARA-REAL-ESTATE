@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#080E1A" />
+      <stop offset="50%" stop-color="#0F1C30" />
+      <stop offset="100%" stop-color="#1A2B45" />
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#FFF0A3" stop-opacity="1" />
+      <stop offset="100%" stop-color="#B8860B" stop-opacity="0.9" />
+    </linearGradient>
+    <linearGradient id="buildingGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#141E2E" />
+      <stop offset="50%" stop-color="#1B283D" />
+      <stop offset="100%" stop-color="#24344E" />
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38567A" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#182A40" stop-opacity="0.9" />
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111B29" />
+      <stop offset="100%" stop-color="#070C14" />
+    </linearGradient>
+    <radialGradient id="lightBeam" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="1200" height="800" fill="url(#skyGrad)" />
+  
+  <!-- Subtle Stars / Horizon Glow -->
+  <circle cx="200" cy="120" r="1.5" fill="#FFF" opacity="0.6" />
+  <circle cx="450" cy="80" r="1.2" fill="#FFF" opacity="0.8" />
+  <circle cx="750" cy="110" r="1.5" fill="#FFF" opacity="0.5" />
+  <circle cx="980" cy="70" r="1.2" fill="#FFF" opacity="0.7" />
+  <circle cx="600" cy="400" r="450" fill="url(#lightBeam)" />
+
+  <!-- Suez Landmark Distant Skyline -->
+  <path d="M 0 520 L 150 510 L 250 515 L 350 495 L 450 510 L 600 500 L 750 515 L 900 490 L 1050 510 L 1200 505 L 1200 800 L 0 800 Z" fill="#0A121F" opacity="0.8" />
+
+  <!-- Main Luxury Residential Towers (4 Feddans Compound) -->
+  
+  <!-- Tower 1 (Left Wing) -->
+  <g transform="translate(140, 220)">
+    <rect x="0" y="0" width="220" height="340" rx="4" fill="url(#buildingGrad)" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.3" />
+    <!-- Architectural Crown / Gold Trim -->
+    <rect x="-8" y="-12" width="236" height="12" rx="2" fill="url(#goldGlow)" />
+    <!-- Balconies & Glass Panels -->
+    <g fill="url(#glassGrad)" stroke="#D4AF37" stroke-width="0.7" stroke-opacity="0.4">
+      <rect x="20" y="30" width="80" height="36" rx="2" />
+      <rect x="120" y="30" width="80" height="36" rx="2" />
+      <rect x="20" y="85" width="80" height="36" rx="2" />
+      <rect x="120" y="85" width="80" height="36" rx="2" />
+      <rect x="20" y="140" width="80" height="36" rx="2" />
+      <rect x="120" y="140" width="80" height="36" rx="2" />
+      <rect x="20" y="195" width="80" height="36" rx="2" />
+      <rect x="120" y="195" width="80" height="36" rx="2" />
+      <rect x="20" y="250" width="80" height="36" rx="2" />
+      <rect x="120" y="250" width="80" height="36" rx="2" />
+    </g>
+    <!-- Warm Interior Light Illuminations -->
+    <rect x="25" y="35" width="30" height="14" fill="#FFE58F" opacity="0.85" rx="1" />
+    <rect x="135" y="90" width="45" height="16" fill="#FFE58F" opacity="0.75" rx="1" />
+    <rect x="35" y="200" width="50" height="15" fill="#FFE58F" opacity="0.9" rx="1" />
+  </g>
+
+  <!-- Tower 2 (Center Master Tower - Higher Elevation) -->
+  <g transform="translate(420, 140)">
+    <rect x="0" y="0" width="360" height="420" rx="6" fill="url(#buildingGrad)" stroke="#D4AF37" stroke-width="1.5" stroke-opacity="0.5" />
+    <!-- Crown -->
+    <polygon points="-15,0 180,-30 375,0" fill="url(#goldGlow)" />
+    <!-- Architectural Gold Vertical Spine -->
+    <line x1="180" y1="0" x2="180" y2="420" stroke="url(#goldGlow)" stroke-width="3" />
+    
+    <!-- Residential Terraces -->
+    <g fill="url(#glassGrad)" stroke="#D4AF37" stroke-width="0.8" stroke-opacity="0.5">
+      <rect x="30" y="35" width="120" height="42" rx="3" />
+      <rect x="210" y="35" width="120" height="42" rx="3" />
+      <rect x="30" y="95" width="120" height="42" rx="3" />
+      <rect x="210" y="95" width="120" height="42" rx="3" />
+      <rect x="30" y="155" width="120" height="42" rx="3" />
+      <rect x="210" y="155" width="120" height="42" rx="3" />
+      <rect x="30" y="215" width="120" height="42" rx="3" />
+      <rect x="210" y="215" width="120" height="42" rx="3" />
+      <rect x="30" y="275" width="120" height="42" rx="3" />
+      <rect x="210" y="275" width="120" height="42" rx="3" />
+      <rect x="30" y="335" width="120" height="42" rx="3" />
+      <rect x="210" y="335" width="120" height="42" rx="3" />
+    </g>
+    <!-- Warm Lights -->
+    <rect x="40" y="42" width="60" height="18" fill="#FFF3B0" opacity="0.9" rx="1" />
+    <rect x="230" y="102" width="70" height="18" fill="#FFE58F" opacity="0.85" rx="1" />
+    <rect x="50" y="222" width="75" height="18" fill="#FFF3B0" opacity="0.8" rx="1" />
+    <rect x="225" y="282" width="80" height="18" fill="#FFE58F" opacity="0.95" rx="1" />
+  </g>
+
+  <!-- Tower 3 (Right Wing) -->
+  <g transform="translate(840, 220)">
+    <rect x="0" y="0" width="220" height="340" rx="4" fill="url(#buildingGrad)" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.3" />
+    <rect x="-8" y="-12" width="236" height="12" rx="2" fill="url(#goldGlow)" />
+    <g fill="url(#glassGrad)" stroke="#D4AF37" stroke-width="0.7" stroke-opacity="0.4">
+      <rect x="20" y="30" width="80" height="36" rx="2" />
+      <rect x="120" y="30" width="80" height="36" rx="2" />
+      <rect x="20" y="85" width="80" height="36" rx="2" />
+      <rect x="120" y="85" width="80" height="36" rx="2" />
+      <rect x="20" y="140" width="80" height="36" rx="2" />
+      <rect x="120" y="140" width="80" height="36" rx="2" />
+      <rect x="20" y="195" width="80" height="36" rx="2" />
+      <rect x="120" y="195" width="80" height="36" rx="2" />
+      <rect x="20" y="250" width="80" height="36" rx="2" />
+      <rect x="120" y="250" width="80" height="36" rx="2" />
+    </g>
+    <rect x="135" y="35" width="45" height="16" fill="#FFE58F" opacity="0.8" rx="1" />
+    <rect x="35" y="145" width="50" height="16" fill="#FFF3B0" opacity="0.9" rx="1" />
+  </g>
+
+  <!-- Ground Plaza, Landscaping & Roads -->
+  <rect x="0" y="560" width="1200" height="240" fill="url(#groundGrad)" />
+  
+  <!-- Central Boulevard Road Perspective -->
+  <polygon points="600,560 550,800 650,800" fill="#172233" />
+  <line x1="600" y1="565" x2="600" y2="795" stroke="#D4AF37" stroke-width="2" stroke-dasharray="16,14" />
+  
+  <!-- Green Landscape Medians -->
+  <polygon points="200,570 480,570 420,780 100,780" fill="#13261C" stroke="#2D5A43" stroke-width="1.5" />
+  <polygon points="720,570 1000,570 1100,780 780,780" fill="#13261C" stroke="#2D5A43" stroke-width="1.5" />
+
+  <!-- Fountain in the Center Court -->
+  <ellipse cx="600" cy="625" rx="90" ry="22" fill="#183656" stroke="#D4AF37" stroke-width="2" />
+  <ellipse cx="600" cy="623" rx="55" ry="12" fill="#3D79A8" opacity="0.7" />
+  <!-- Water Jet -->
+  <path d="M 600 623 Q 585 585 600 575 Q 615 585 600 623" fill="none" stroke="#E0F2FE" stroke-width="3" opacity="0.85" />
+  <path d="M 600 623 Q 570 595 565 615" fill="none" stroke="#BAE6FD" stroke-width="2" opacity="0.7" />
+  <path d="M 600 623 Q 630 595 635 615" fill="none" stroke="#BAE6FD" stroke-width="2" opacity="0.7" />
+
+  <!-- Street Lamp Warm Glows -->
+  <circle cx="470" cy="630" r="16" fill="#FFE58F" opacity="0.3" />
+  <circle cx="470" cy="630" r="4" fill="#FFF" />
+  <circle cx="730" cy="630" r="16" fill="#FFE58F" opacity="0.3" />
+  <circle cx="730" cy="630" r="4" fill="#FFF" />
+
+  <!-- Top Architectural Label Overlay -->
+  <rect x="40" y="40" width="380" height="70" rx="8" fill="#0C1524" fill-opacity="0.88" stroke="#D4AF37" stroke-width="1" />
+  <text x="60" y="68" font-family="'Cairo', sans-serif" font-size="16" font-weight="700" fill="#E2E8F0">
+    المنظور الرئيسي العام لمشروع Golden View
+  </text>
+  <text x="60" y="92" font-family="'Cairo', sans-serif" font-size="12" font-weight="500" fill="#D4AF37">
+    4 أفدنة – 24 أكتوبر بالسويس (تصميم معماري 3D)
+  </text>
+
+  <!-- Bottom Badge: Verified Rendering -->
+  <g transform="translate(860, 720)">
+    <rect x="0" y="0" width="300" height="46" rx="6" fill="#09101C" fill-opacity="0.9" stroke="#D4AF37" stroke-width="1" />
+    <circle cx="24" cy="23" r="8" fill="#D4AF37" />
+    <text x="44" y="28" font-family="'Cairo', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">
+      صوره معماري ثلاثي الأبعاد معتمد للمشروع
+    </text>
+  </g>
+</svg>

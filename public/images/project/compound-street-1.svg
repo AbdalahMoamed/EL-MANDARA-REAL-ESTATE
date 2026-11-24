@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyDay" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="60%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#93C5FD" />
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="650" fill="url(#skyDay)" />
+  
+  <!-- Architectural Facades on Both Sides of Boulevard -->
+  <!-- Left Building -->
+  <polygon points="0,180 280,260 280,550 0,650" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5" />
+  <!-- Balconies Left -->
+  <g fill="#0F172A" stroke="#D4AF37" stroke-width="0.8">
+    <polygon points="40,240 180,280 180,310 40,270" />
+    <polygon points="40,320 180,360 180,390 40,350" />
+    <polygon points="40,400 180,440 180,470 40,430" />
+    <polygon points="40,480 180,520 180,550 40,510" />
+  </g>
+
+  <!-- Right Building -->
+  <polygon points="1000,180 720,260 720,550 1000,650" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5" />
+  <!-- Balconies Right -->
+  <g fill="#0F172A" stroke="#D4AF37" stroke-width="0.8">
+    <polygon points="960,240 820,280 820,310 960,270" />
+    <polygon points="960,320 820,360 820,390 960,350" />
+    <polygon points="960,400 820,440 820,470 960,430" />
+    <polygon points="960,480 820,520 820,550 960,510" />
+  </g>
+
+  <!-- Central Street Perspective -->
+  <polygon points="280,480 720,480 1000,650 0,650" fill="url(#roadGrad)" />
+  <polygon points="490,480 510,480 520,650 480,650" fill="#D4AF37" opacity="0.9" />
+
+  <!-- Pedestrian Walkway & Landscaping -->
+  <!-- Left Trees & Walkway -->
+  <polygon points="240,480 280,480 200,650 120,650" fill="#D97706" opacity="0.3" />
+  <circle cx="260" cy="460" r="18" fill="#15803D" />
+  <circle cx="230" cy="510" r="24" fill="#16A34A" />
+  <circle cx="180" cy="570" r="32" fill="#15803D" />
+
+  <!-- Right Trees & Walkway -->
+  <polygon points="760,480 720,480 800,650 880,650" fill="#D97706" opacity="0.3" />
+  <circle cx="740" cy="460" r="18" fill="#15803D" />
+  <circle cx="770" cy="510" r="24" fill="#16A34A" />
+  <circle cx="820" cy="570" r="32" fill="#15803D" />
+
+  <!-- Sign / Title -->
+  <rect x="30" y="30" width="370" height="56" rx="6" fill="#0C1420" fill-opacity="0.9" stroke="#D4AF37" stroke-width="1" />
+  <text x="45" y="55" font-family="'Cairo', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">
+    شوارع ومسارات الكمبوند الداخلية
+  </text>
+  <text x="45" y="74" font-family="'Cairo', sans-serif" font-size="11" font-weight="500" fill="#D4AF37">
+    طرق ممهدة مشجرة وتصميم عمراني يراعي الخصوصية
+  </text>
+</svg>
