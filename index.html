@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Golden View | كمبوند جولدن فيو السويس – El Mandara</title>
+  <meta name="description" content="اكتشف Compound Golden View في منطقة 24 أكتوبر بالسويس بجوار مرور السويس والمجمع الطبي. وحدات سكنية وتجارية وإدارية بمساحات متنوعة. تواصل معنا لمعرفة التفاصيل والأسعار.">
+  <meta name="keywords" content="كمبوند جولدن فيو السويس, كمبوند Golden View, Compound Golden View Suez, كمبوندات السويس, شقق للبيع في السويس, شقق 24 أكتوبر السويس, شركة المندرة للتسويق العقاري, El Mandara Real Estate">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Compound Golden View | كمبوند جولدن فيو السويس – El Mandara">
+  <meta property="og:description" content="حياة متكاملة في قلب السويس – 4 أفدنة بمنطقة 24 أكتوبر بجوار مرور السويس والمجمع الطبي.">
+  <meta property="og:image" content="public/images/project/main-project-rendering.png">
+  <meta property="og:type" content="website">
+</head>
+<body style="background-color:#FFFFFF; color:#1E293B;">
+
+  <!-- STICKY NAVBAR -->
+  <header class="sticky-header">
+    <div class="container nav-container">
+      <!-- Right Logo in RTL: El Mandara Real Estate (Company Logo) -->
+      <a href="index.html" class="brand-logo" aria-label="شركة المندرة للتسويق العقاري" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+        <img src="public/images/brand/el-mandara-company-logo.png" 
+             onerror="this.onerror=null; this.src='public/images/brand/golden-view-logo.png';" 
+             alt="شركة المندرة للتسويق العقاري - El Mandara Real Estate" 
+             class="brand-company-logo" 
+             style="height: 48px; width: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); object-fit: contain;">
+        <div style="display: flex; flex-direction: column; text-align: right;">
+          <span style="font-size: 0.88rem; font-weight: 800; color: #1E293B;">شركة المندرة للتسويق العقاري</span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: #C8B18A; letter-spacing: 0.5px;">EL MANDARA REAL ESTATE</span>
+        </div>
+      </a>
+
+      <!-- Center Links -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">الرئيسية</a></li>
+          <li><a href="about.html">عن الشركة</a></li>
+          <li><a href="gallery.html">معرض الصور</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </nav>
+
+      <!-- Left CTA in RTL -->
+      <div class="desktop-cta" style="display: flex; align-items: center; gap: 1rem;">
+        <a href="https://wa.me/201029919352" target="_blank" rel="noopener noreferrer" style="color: #475569; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid #EAE6DF; background:#FAF8F5; padding: 0.5rem 1rem; border-radius: 9999px;">
+          💬 واتساب المبيعات
+        </a>
+        <a href="#inquiry" class="btn-gold" style="font-size: 0.85rem; padding: 0.6rem 1.4rem;">
+          طلب تفاصيل الوحدة ⇽
+        </a>
+      </div>
+
+      <!-- Hamburger Button for Mobile -->
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="القائمة">
+        ☰
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <ul>
+        <li><a href="index.html" class="active">الرئيسية</a></li>
+        <li><a href="about.html">عن الشركة</a></li>
+        <li><a href="gallery.html">معرض الصور</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+      <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+        <a href="tel:01036555502" class="btn-outline-gold" style="width: 100%; text-align: center;">
+          📞 اتصال بالمبيعات (01036555502)
+        </a>
+        <a href="https://wa.me/201029919352" target="_blank" rel="noopener noreferrer" class="btn-gold" style="width: 100%; text-align: center;">
+          💬 محادثة واتساب فورية
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main style="background-color:#FFFFFF;">
+    <!-- SECTION 1: HERO SECTION -->
+    <section style="position: relative; min-height: 94vh; display: flex; align-items: center; justify-content: center; padding: 7rem 1.5rem 4rem; overflow: hidden; text-align: center;">
+      <!-- Background Render -->
+      <div style="position: absolute; inset: 0; z-index: 0;">
+        <img id="hero-project-image" src="public/images/project/شارع المجمع 2.png" alt="المنظور الرئيسي لمشروع Golden View" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,12,20,0.65) 0%, rgba(7,12,20,0.50) 50%, rgba(7,12,20,0.85) 100%);"></div>
+      </div>
+
+      <div class="container" style="position: relative; z-index: 10; max-width: 900px;">
+        <!-- Developer Badge -->
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1.25rem; border-radius: 9999px; background: rgba(200,177,138,0.15); border: 1px solid rgba(200,177,138,0.4); font-size: 0.85rem; font-weight: 600; color: #EAE6DF; margin-bottom: 1.5rem;">
+          <span style="color: #C8B18A;">★</span>
+          <span>مشروع معتمد تسويقياً بواسطة شركة المندرة للتسويق العقاري – السويس</span>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <img src="public/images/brand/golden-view-compound-logo.png" 
+               onerror="this.onerror=null; this.src='public/images/brand/golden-view-logo.png';" 
+               alt="شعار كمبوند جولدن فيو - Compound Golden View" 
+               class="brand-project-logo" 
+               style="max-height: 95px; width: auto; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35); object-fit: contain;">
+        </div>
+
+        <p style="font-family: monospace; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.35em; color: #C8B18A; margin-bottom: 0.75rem;">
+          COMPOUND GOLDEN VIEW
+        </p>
+
+        <h1 style="font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.25; margin-bottom: 1.5rem; color: #FFFFFF;">
+          &ldquo;<span class="text-gold-gradient">حياة متكاملة في قلب السويس</span>&rdquo;
+        </h1>
+
+        <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #E2E8F0; line-height: 1.7; max-width: 750px; margin: 0 auto 2.5rem; font-weight: 400;">
+          اكتشف مفهومًا جديدًا للحياة العصرية في قلب السويس، مع وحدات سكنية وتجارية وإدارية بمساحات متنوعة وموقع مميز.
+        </p>
+
+        <!-- CTAs -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 3.5rem;">
+          <a href="#about-project" class="btn-gold" style="padding: 1rem 2.25rem; font-size: 1.05rem;">
+            اكتشف المشروع ⇊
+          </a>
+          <a href="#inquiry" class="btn-outline-gold" style="padding: 1rem 2.25rem; font-size: 1.05rem;">
+            تواصل معنا ✉
+          </a>
+        </div>
+
+        <!-- Quick Summary Bar -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; border-top: 1px solid rgba(200,177,138,0.25); padding-top: 1.75rem;">
+          <div style="background: rgba(200,177,138,0.12); padding: 0.85rem; border-radius: 0.75rem; border: 1px solid rgba(200,177,138,0.2); text-align: right;">
+            <div style="font-size: 0.75rem; color: #C8B18A; font-weight: 600;">مساحة المشروع</div>
+            <div style="font-size: 1rem; font-weight: 700; color: #FFFFFF; margin-top: 0.2rem;">4 أفدنة</div>
+          </div>
+          <div style="background: rgba(200,177,138,0.12); padding: 0.85rem; border-radius: 0.75rem; border: 1px solid rgba(200,177,138,0.2); text-align: right;">
+            <div style="font-size: 0.75rem; color: #C8B18A; font-weight: 600;">الموقع الاستراتيجي</div>
+            <div style="font-size: 1rem; font-weight: 700; color: #FFFFFF; margin-top: 0.2rem;">منطقة 24 أكتوبر</div>
+          </div>
+          <div style="background: rgba(200,177,138,0.12); padding: 0.85rem; border-radius: 0.75rem; border: 1px solid rgba(200,177,138,0.2); text-align: right;">
+            <div style="font-size: 0.75rem; color: #C8B18A; font-weight: 600;">الوحدات السكنية</div>
+            <div style="font-size: 1rem; font-weight: 700; color: #FFFFFF; margin-top: 0.2rem;">146–265 م² + جراج</div>
+          </div>
+          <div style="background: rgba(200,177,138,0.12); padding: 0.85rem; border-radius: 0.75rem; border: 1px solid rgba(200,177,138,0.2); text-align: right;">
+            <div style="font-size: 0.75rem; color: #C8B18A; font-weight: 600;">المعالم المجاورة</div>
+            <div style="font-size: 1rem; font-weight: 700; color: #FFFFFF; margin-top: 0.2rem;">مرور السويس والمجمع الطبي</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT THE PROJECT -->
+    <section id="about-project" style="padding: 6rem 0; background: #FFFFFF;">
+      <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem;">
+          <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FAF8F5; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+            نظرة عامة على المشروع
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #C8B18A; margin-bottom: 1rem;">
+            اكتشف <span class="text-gold-gradient">Golden View</span>
+          </h2>
+          <div style="width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #C8B18A, transparent); margin: 0 auto 2rem;"></div>
+
+          <!-- Exact Arabic Content from Prompt -->
+          <div class="glass-panel" style="padding: 2rem; text-align: right; line-height: 1.85; font-size: 1.05rem; color: #334155;">
+            <p style="margin-bottom: 1rem;">
+              يأتي مشروع Compound Golden View ليقدم مفهومًا متكاملًا للحياة العصرية في قلب محافظة السويس، بموقع مميز في منطقة 24 أكتوبر، بجوار مرور السويس والمجمع الطبي.
+            </p>
+            <p>
+              يمتد المشروع على مساحة 4 أفدنة، ويضم وحدات سكنية وتجارية وإدارية بمساحات متنوعة، مع توفير جراج خاص لكل وحدة سكنية، إلى جانب مجموعة من الخدمات والمميزات التي تهدف إلى توفير بيئة متكاملة.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5 Premium Info Cards from Master Prompt -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;">
+          <div class="glass-panel glass-panel-hover" style="padding: 1.75rem; text-align: right;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">📐</div>
+            <div style="font-size: 0.8rem; color: #64748B; font-weight: 600;">مساحة المشروع</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin: 0.35rem 0;">4 أفدنة</div>
+            <div style="font-size: 0.75rem; color: #64748B; border-top: 1px solid #EAE6DF; padding-top: 0.75rem;">مساحة إجمالية متكاملة</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 1.75rem; text-align: right;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">📍</div>
+            <div style="font-size: 0.8rem; color: #64748B; font-weight: 600;">الموقع</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin: 0.35rem 0;">24 أكتوبر – السويس</div>
+            <div style="font-size: 0.75rem; color: #64748B; border-top: 1px solid #EAE6DF; padding-top: 0.75rem;">بجوار المرور والمجمع الطبي</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 1.75rem; text-align: right;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">🏢</div>
+            <div style="font-size: 0.8rem; color: #64748B; font-weight: 600;">الوحدات السكنية</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin: 0.35rem 0;">146–265 مترًا مربعًا</div>
+            <div style="font-size: 0.75rem; color: #64748B; border-top: 1px solid #EAE6DF; padding-top: 0.75rem;">جراج خاص لكل وحدة سكنية</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 1.75rem; text-align: right;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">🛍️</div>
+            <div style="font-size: 0.8rem; color: #64748B; font-weight: 600;">الوحدات التجارية</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin: 0.35rem 0;">50–250 مترًا مربعًا</div>
+            <div style="font-size: 0.75rem; color: #64748B; border-top: 1px solid #EAE6DF; padding-top: 0.75rem;">واجهات ومساحات تجارية واعدة</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 1.75rem; text-align: right;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">💼</div>
+            <div style="font-size: 0.8rem; color: #64748B; font-weight: 600;">الوحدات الإدارية</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin: 0.35rem 0;">100–300 متر مربع</div>
+            <div style="font-size: 0.75rem; color: #64748B; border-top: 1px solid #EAE6DF; padding-top: 0.75rem;">مكاتب ومقرات عمل راقية</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PROJECT FEATURES -->
+    <section style="padding: 6rem 0; background: #FAF8F5;">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3.5rem;">
+          <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FFFFFF; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+            المميزات والخدمات المعتمدة
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #C8B18A; margin-bottom: 1rem;">
+            كل ما تحتاج إليه في <span class="text-gold-gradient">مكان واحد</span>
+          </h2>
+          <p style="color: #475569; font-size: 0.95rem; font-weight: 500;">
+            المميزات الرسمية المؤكدة وفق المخطط العام للمشروع.
+          </p>
+        </div>
+
+        <!-- 6 Confirmed Features ONLY -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          <div class="glass-panel glass-panel-hover" style="padding: 2rem; text-align: right; background:#FFFFFF; border-top: 3px solid #C8B18A;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🛡️</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">1. بوابات أمنية</h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">مداخل ومخارج محكمة تضمن انسيابية الحركة وأقصى درجات الخصوصية والسلامة لكافة القاطنين والزوار.</p>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 2rem; text-align: right; background:#FFFFFF; border-top: 3px solid #C8B18A;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">👮</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">2. أمن وحراسة</h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">طواقم أمنية متخصصة ومؤهلة تعمل على مدار الساعة طوال أيام الأسبوع لتوفير بيئة آمنة وهادئة.</p>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 2rem; text-align: right; background:#FFFFFF; border-top: 3px solid #C8B18A;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">📹</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">3. كاميرات مراقبة</h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">منظومة تليفزيونية رقمية حديثة للمراقبة تغطي الشوارع والمداخل والمحيط الخارجي بالكامل.</p>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 2rem; text-align: right; background:#FFFFFF; border-top: 3px solid #C8B18A;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🚗</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">4. جراج خاص لكل وحدة سكنية</h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">مساحة خاصة مؤمنة لصف سيارات مالكي كل شقة سكنية لتفادي أي تكدس وتيسير حركة المركبات.</p>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 2rem; text-align: right; background:#FFFFFF; border-top: 3px solid #C8B18A;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🌳</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">5. مساحات خضراء</h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">لاندسكيب ومسطحات خضراء تفصل بين المباني وتوفر متنفساً طبيعياً وإطلالات جمالية مريحة.</p>
+          </div>
+
+          <div class="glass-panel glass-panel-hover" style="padding: 2rem; text-align: right; background:#FFFFFF; border-top: 3px solid #C8B18A;">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">⛲</div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">6. نافورة داخلية</h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.6;">عنصر مائي جمالي في قلب الساحات يضفي لمسة فندقية راقية ويزيد من جاذبية المكان نهاراً ومساءً.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: UNIT TYPES -->
+    <section id="units" style="padding: 6rem 0; background: #FFFFFF;">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3.5rem;">
+          <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FAF8F5; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+            أنواع الوحدات
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #C8B18A; margin-bottom: 1rem;">
+            اختر وحدتك في <span class="text-gold-gradient">Golden View</span>
+          </h2>
+          <p style="color: #475569; font-size: 0.95rem; font-weight: 500;">
+            خيارات سكنية وتجارية وإدارية مصممة بأعلى مواصفات الجودة الهندسية.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+          <!-- Residential Card -->
+          <div class="glass-panel" style="padding: 2.25rem; text-align: right; border: 1.5px solid #C8B18A; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; background: #C8B18A; color: #FFFFFF; font-size: 0.75rem; font-weight: 800; margin-bottom: 1rem;">
+                جراج خاص لكل وحدة سكنية
+              </div>
+              <h3 style="font-size: 1.6rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">الوحدات السكنية</h3>
+              <div style="font-size: 1.15rem; font-weight: 700; color: #334155; margin-bottom: 1rem;">المساحة: 146–265 م²</div>
+              <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                شقق سكنية عصرية بتوزيع ذكي للمساحات وخصوصية عائلية كاملة مع جراج خاص مؤمن لكل وحدة.
+              </p>
+            </div>
+            <div>
+              <div style="padding: 0.85rem; background: #FAF8F5; border: 1px solid #EAE6DF; border-radius: 0.75rem; font-size: 0.8rem; color: #64748B; margin-bottom: 1.25rem;">
+                ℹ للتعرف على أحدث الأسعار وأنظمة السداد، تواصل مع فريق المبيعات.
+              </div>
+              <button onclick="selectUnitType('residential')" class="btn-gold" style="width: 100%;">
+                استفسر عن الوحدات السكنية ⇽
+              </button>
+            </div>
+          </div>
+
+          <!-- Commercial Card -->
+          <div class="glass-panel" style="padding: 2.25rem; text-align: right; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; background: #FAF8F5; color: #64748B; font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid #EAE6DF;">
+                أنشطة وماركات تجارية
+              </div>
+              <h3 style="font-size: 1.6rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">الوحدات التجارية</h3>
+              <div style="font-size: 1.15rem; font-weight: 700; color: #334155; margin-bottom: 1rem;">المساحة: 50–250 م²</div>
+              <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                مساحات تجارية واعدة تلبي متطلبات العلامات التجارية والأنشطة الخدمية بموقع استراتيجي نشط.
+              </p>
+            </div>
+            <div>
+              <div style="padding: 0.85rem; background: #FAF8F5; border: 1px solid #EAE6DF; border-radius: 0.75rem; font-size: 0.8rem; color: #64748B; margin-bottom: 1.25rem;">
+                ℹ للتعرف على أحدث الأسعار وأنظمة السداد، تواصل مع فريق المبيعات.
+              </div>
+              <button onclick="selectUnitType('commercial')" class="btn-outline-gold" style="width: 100%;">
+                استفسر عن الوحدات التجارية ⇽
+              </button>
+            </div>
+          </div>
+
+          <!-- Administrative Card -->
+          <div class="glass-panel" style="padding: 2.25rem; text-align: right; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; background: #FAF8F5; color: #64748B; font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid #EAE6DF;">
+                مكاتب وعيادات ومقرات
+              </div>
+              <h3 style="font-size: 1.6rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">الوحدات الإدارية</h3>
+              <div style="font-size: 1.15rem; font-weight: 700; color: #334155; margin-bottom: 1rem;">المساحة: 100–300 متر مربع</div>
+              <p style="color: #475569; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                مقرات إدارية راقية مجهزة لبيئة عمل احترافية بالقرب من المجمع الطبي ومرور السويس.
+              </p>
+            </div>
+            <div>
+              <div style="padding: 0.85rem; background: #FAF8F5; border: 1px solid #EAE6DF; border-radius: 0.75rem; font-size: 0.8rem; color: #64748B; margin-bottom: 1.25rem;">
+                ℹ للتعرف على أحدث الأسعار وأنظمة السداد، تواصل مع فريق المبيعات.
+              </div>
+              <button onclick="selectUnitType('administrative')" class="btn-outline-gold" style="width: 100%;">
+                استفسر عن الوحدات الإدارية ⇽
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PROJECT VIDEO -->
+    <section style="padding: 6rem 0; background: #FAF8F5;">
+      <div class="container" style="max-width: 1000px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FFFFFF; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+            الجولة المرئية
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #C8B18A; margin-bottom: 1rem;">
+            شاهد <span class="text-gold-gradient">Golden View</span> عن قرب
+          </h2>
+          <p style="color: #475569; font-size: 0.95rem; font-weight: 500;">
+            جولة استعراضية لأبعاد المشروع وتناغم المباني السكنية والإدارية والتجارية في السويس.
+          </p>
+        </div>
+
+        <div style="position: relative; border-radius: 1.5rem; overflow: hidden; border: 1px solid #EAE6DF; box-shadow: 0 20px 50px rgba(0,0,0,0.08); aspect-ratio: 16/9; background: #F1EFEA;">
+          <video id="project-video-player" src="public/videos/golden-view-showcase.mp4" poster="public/images/project/video-thumbnail.png" playsinline muted controls style="width: 100%; height: 100%; object-fit: cover;"></video>
+          
+          <div id="video-play-overlay" style="position: absolute; inset: 0; background: rgba(200,177,138,0.08); backdrop-filter: blur(2px); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: #C8B18A; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #FFFFFF; box-shadow: 0 0 30px rgba(200,177,138,0.5); margin-bottom: 1rem;">
+              ▶
+            </div>
+            <div style="font-size: 1.2rem; font-weight: 800; color: #1E293B; margin-bottom: 0.25rem;">
+              جولة سينمائية في Compound Golden View
+            </div>
+            <span style="font-size: 0.85rem; color: #64748B; font-weight: 600;">
+              جولة استعراضية للمشروع (المدة: 02:45)
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PROJECT IMAGE PREVIEW -->
+    <section style="padding: 6rem 0; background: #FFFFFF;">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3.5rem;">
+          <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FAF8F5; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+            معاينة الصور
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #C8B18A; margin-bottom: 1rem;">
+            تفاصيل <span class="text-gold-gradient">Golden View</span>
+          </h2>
+          <p style="color: #475569; font-size: 0.95rem; font-weight: 500;">
+            مختارات من صور المشروع المعمارية، الجراجات، ومحاور الطرق.
+          </p>
+        </div>
+
+        <!-- 6 Image Cards Grid -->
+        <div id="homepage-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+          <!-- Card 1 -->
+          <div class="glass-panel glass-panel-hover" onclick="openLightbox(0)" style="cursor: pointer; overflow: hidden; text-align: right;">
+            <div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
+              <img src="public/images/project/شارع المجمع 2.png" alt="المنظور الرئيسي لكمبوند Golden View" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(200,177,138,0.9); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                صور الصفحة الرئيسية
+              </div>
+            </div>
+            <div style="padding: 1.25rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">المنظور الرئيسي لكمبوند Golden View</h3>
+              <p style="font-size: 0.8rem; color: #64748B; line-height: 1.6;">الواجهة المعمارية الرئيسية لكمبوند جولدن فيو بمحافظة السويس، تعكس الفخامة والتكامل المعماري والسكني الحديث.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-panel glass-panel-hover" onclick="openLightbox(1)" style="cursor: pointer; overflow: hidden; text-align: right;">
+            <div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
+              <img src="public/images/project/الجراج.png" alt="جراج السيارات الخاص" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(200,177,138,0.9); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                الجراج
+              </div>
+            </div>
+            <div style="padding: 1.25rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">جراج السيارات الخاص</h3>
+              <p style="font-size: 0.8rem; color: #64748B; line-height: 1.6;">مواقف سيارات خاصة ومؤمنة تحت الأرض لخدمة قاطني الكمبوند، مزودة بأنظمة تهوية ومراقبة حديثة.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-panel glass-panel-hover" onclick="openLightbox(5)" style="cursor: pointer; overflow: hidden; text-align: right;">
+            <div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
+              <img src="public/images/project/شارع المرور ليل 2.png" alt="شارع المرور - إضاءة ليلية" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(200,177,138,0.9); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                شوارع الكمبوند
+              </div>
+            </div>
+            <div style="padding: 1.25rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">شارع المرور - إضاءة ليلية</h3>
+              <p style="font-size: 0.8rem; color: #64748B; line-height: 1.6;">مشهد ليلي جذاب للشارع الخارجي بإضاءات حديثة تعكس حيوية وأناقة محيط كمبوند جولدن فيو.</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-panel glass-panel-hover" onclick="openLightbox(7)" style="cursor: pointer; overflow: hidden; text-align: right;">
+            <div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
+              <img src="public/images/project/الشارع الداخلى للكمبوند ليل.png" alt="الشارع الداخلي – إضاءة ليلية ساحرة" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(200,177,138,0.9); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                صور ليلية
+              </div>
+            </div>
+            <div style="padding: 1.25rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">الشارع الداخلي – إضاءة ليلية ساحرة</h3>
+              <p style="font-size: 0.8rem; color: #64748B; line-height: 1.6;">إضاءة ليلية هندسية مدروسة للمسارات والمساحات الداخلية توفر الهدوء والجمال والأمان التام.</p>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="glass-panel glass-panel-hover" onclick="openLightbox(9)" style="cursor: pointer; overflow: hidden; text-align: right;">
+            <div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
+              <img src="public/images/project/شارع المرور ليل.png" alt="شارع المرور – إطلالة ليلية" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(200,177,138,0.9); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                صور ليلية
+              </div>
+            </div>
+            <div style="padding: 1.25rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">شارع المرور – إطلالة ليلية</h3>
+              <p style="font-size: 0.8rem; color: #64748B; line-height: 1.6;">إطلالة ليلية راقية للواجهات المطلة على شارع المرور في أجواء هادئة وأمن على مدار الساعة.</p>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="glass-panel glass-panel-hover" onclick="openLightbox(11)" style="cursor: pointer; overflow: hidden; text-align: right;">
+            <div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
+              <img src="public/images/project/شارع مساكن 24 اكتوبر.png" alt="شارع مساكن 24 اكتوبر" style="width: 100%; height: 100%; object-fit: cover;">
+              <div style="position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(200,177,138,0.9); color: #FFFFFF; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 9999px;">
+                صور إضافية للمشروع
+              </div>
+            </div>
+            <div style="padding: 1.25rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">شارع مساكن 24 اكتوبر</h3>
+              <p style="font-size: 0.8rem; color: #64748B; line-height: 1.6;">منظور إضافي يبرز تناغم واجهات الكمبوند وتكامله مع منطقة مساكن 24 أكتوبر بالسويس.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="gallery.html" class="btn-gold" style="padding: 0.9rem 2.5rem; font-size: 1rem;">
+            استكشف معرض الصور بالكامل ⇽
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: PROJECT LOCATION -->
+    <section style="padding: 6rem 0; background: #FAF8F5;">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3.5rem;">
+          <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FFFFFF; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+            الموقع الحيوي
+          </div>
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #C8B18A; margin-bottom: 1rem;">
+            Golden View في <span class="text-gold-gradient">قلب السويس</span>
+          </h2>
+          <!-- Arabic Description from Master Prompt -->
+          <p style="color: #334155; font-size: 1.1rem; line-height: 1.8; font-weight: 500;">
+            يتميز المشروع بموقعه في منطقة 24 أكتوبر بمحافظة السويس، بجوار مرور السويس والمجمع الطبي.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: stretch;">
+          <!-- Landmarks details -->
+          <div class="glass-panel" style="padding: 2.25rem; text-align: right; display: flex; flex-direction: column; justify-content: space-between; background:#FFFFFF;">
+            <div>
+              <h3 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; border-bottom: 1px solid #EAE6DF; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                المعالم المجاورة للمشروع
+              </h3>
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div>
+                  <div style="font-weight: 700; color: #C8B18A; font-size: 1rem; margin-bottom: 0.25rem;">📍 منطقة 24 أكتوبر – السويس</div>
+                  <p style="font-size: 0.85rem; color: #475569;">شريان حيوي وموقع مركزي استثماري واعد في السويس.</p>
+                </div>
+                <div>
+                  <div style="font-weight: 700; color: #C8B18A; font-size: 1rem; margin-bottom: 0.25rem;">🚗 إدارة مرور السويس</div>
+                  <p style="font-size: 0.85rem; color: #475569;">موقع ملاصق لإدارة المرور مما يسهل التنقل والانتقال اليومي.</p>
+                </div>
+                <div>
+                  <div style="font-weight: 700; color: #C8B18A; font-size: 1rem; margin-bottom: 0.25rem;">🏥 المجمع الطبي بالسويس</div>
+                  <p style="font-size: 0.85rem; color: #475569;">بالقرب من الصرح الطبي الأكبر بالسويس، قيمة مضافة للسكن والعيادات.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <a href="https://maps.app.goo.gl/RU2Nf9bBf8TonQaBA" target="_blank" rel="noopener noreferrer" class="btn-gold" style="width: 100%;">
+                افتح الموقع على Google Maps ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- Interactive Map -->
+          <div style="border-radius: 1.25rem; overflow: hidden; border: 1px solid #EAE6DF; min-height: 380px; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.04);">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13813.067302480646!2d32.5312000!3d29.9734000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145625bf21e73995%3A0x6b876d7fb1bfb488!2z2KfZhNmF2KzZhdi5INin2YTYt9io2Yog2KfZhNiz2YjZitiz!5e0!3m2!1sar!2seg!4v1700000000000!5m2!1sar!2seg" width="100%" height="100%" style="border:0; min-height: 380px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="موقع كمبوند جولدن فيو"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: LEAD GENERATION FORM -->
+    <section id="inquiry" style="padding: 6rem 0; background: #FFFFFF;">
+      <div class="container" style="max-width: 800px;">
+        <div class="glass-panel" style="padding: clamp(2rem, 5vw, 3.5rem); border: 1.5px solid #EAE6DF; text-align: right;">
+          <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: 9999px; background: #FAF8F5; border: 1px solid rgba(200,177,138,0.4); color: #C8B18A; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem;">
+              استفسار مباشر
+            </div>
+            <!-- Title & Description from Master Prompt -->
+            <h2 style="font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: #C8B18A; margin-bottom: 0.75rem;">
+              مهتم بامتلاك وحدتك في <span class="text-gold-gradient">Golden View</span>؟
+            </h2>
+            <p style="color: #475569; font-size: 1rem; line-height: 1.7;">
+              اترك بياناتك وسيتواصل معك فريق المبيعات لمساعدتك في معرفة التفاصيل والأسعار وأنظمة السداد.
+            </p>
+          </div>
+
+          <form id="lead-inquiry-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Full Name -->
+            <div>
+              <label for="customer-name" style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem;">
+                الاسم الكامل <span style="color: #DC2626;">*</span>
+              </label>
+              <input type="text" id="customer-name" placeholder="أدخل اسمك " style="width: 100%; padding: 0.9rem 1.2rem; border-radius: 0.75rem; background: #FFFFFF; border: 1.5px solid #EAE6DF; color: #1E293B; font-family: inherit; font-size: 0.95rem; outline: none; text-align: right; transition: border-color 0.2s;" onfocus="this.style.borderColor='#C8B18A'" onblur="this.style.borderColor='#EAE6DF'">
+              <div id="name-error" style="color: #DC2626; font-size: 0.75rem; margin-top: 0.35rem;"></div>
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+              <label for="customer-phone" style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem;">
+                رقم الهاتف (المحمول / الواتساب) <span style="color: #DC2626;">*</span>
+              </label>
+              <input type="tel" dir="ltr" id="customer-phone" placeholder="01XXXXXXXXX" style="width: 100%; padding: 0.9rem 1.2rem; border-radius: 0.75rem; background: #FFFFFF; border: 1.5px solid #EAE6DF; color: #1E293B; font-family: monospace; font-size: 1rem; outline: none; text-align: right; transition: border-color 0.2s;" onfocus="this.style.borderColor='#C8B18A'" onblur="this.style.borderColor='#EAE6DF'">
+              <div id="phone-error" style="color: #DC2626; font-size: 0.75rem; margin-top: 0.35rem;"></div>
+            </div>
+
+            <!-- Inquiry Type -->
+            <div>
+              <label for="inquiry-unit-type" style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem;">
+                نوع الاستفسار / الوحدة المطلوبة <span style="color: #DC2626;">*</span>
+              </label>
+              <select id="inquiry-unit-type" style="width: 100%; padding: 0.9rem 1.2rem; border-radius: 0.75rem; background: #FFFFFF; border: 1.5px solid #EAE6DF; color: #1E293B; font-family: inherit; font-size: 0.95rem; outline: none; cursor: pointer; text-align: right;">
+                <option value="residential">وحدة سكنية (146–265 م²)</option>
+                <option value="commercial">وحدة تجارية (50–250 م²)</option>
+                <option value="administrative">وحدة إدارية (100–300 م²)</option>
+                <option value="general">استفسار عام عن المشروع</option>
+              </select>
+            </div>
+
+            <!-- Inquiry Details -->
+            <div>
+              <label for="inquiry-details" style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem;">
+                تفاصيل الاستفسار <span style="color: #DC2626;">*</span>
+              </label>
+              <textarea id="inquiry-details" rows="3" placeholder="اكتب هنا المساحة المرغوبة، موعد التواصل المفضل، أو أي استفسار آخر..." style="width: 100%; padding: 0.9rem 1.2rem; border-radius: 0.75rem; background: #FFFFFF; border: 1.5px solid #EAE6DF; color: #1E293B; font-family: inherit; font-size: 0.95rem; outline: none; resize: none; text-align: right; transition: border-color 0.2s;" onfocus="this.style.borderColor='#C8B18A'" onblur="this.style.borderColor='#EAE6DF'"></textarea>
+              <div id="details-error" style="color: #DC2626; font-size: 0.75rem; margin-top: 0.35rem;"></div>
+            </div>
+
+            <!-- Submit Button (Master Prompt requirement) -->
+            <button type="submit" class="btn-gold" style="padding: 1.1rem; font-size: 1.05rem; width: 100%; margin-top: 0.5rem;">
+              💬 إرسال الاستفسار عبر WhatsApp
+            </button>
+
+            <div style="font-size: 0.75rem; color: #64748B; text-align: center; line-height: 1.6;">
+              * سيتم فتح تطبيق واتساب لعرض رسالتك المجهزة؛ يُرجى تأكيد إرسالها من خلال التطبيق ليصلك رد فوري من مسؤول المبيعات.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background: #FFFFFF; border-top: 1px solid #EAE6DF; padding: 4.5rem 0 2rem; color: #475569; text-align: right;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; margin-bottom: 3.5rem;">
+        <!-- Brand Info: El Mandara Real Estate (Company Logo) -->
+        <div>
+          <img src="public/images/brand/el-mandara-company-logo.png" 
+               onerror="this.onerror=null; this.src='public/images/brand/golden-view-logo.png';" 
+               alt="شعار شركة المندرة للتسويق العقاري - El Mandara Real Estate" 
+               class="brand-company-logo" 
+               style="height: 52px; width: auto; margin-bottom: 1rem; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); object-fit: contain;">
+          <div style="font-size: 0.95rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.25rem;">شركة المندرة للتسويق العقاري</div>
+          <div style="font-size: 0.75rem; color: #94A3B8; font-family: monospace; margin-bottom: 1rem;">EL MANDARA REAL ESTATE</div>
+          <p style="font-size: 0.85rem; line-height: 1.7; color: #475569; margin-bottom: 1.25rem;">
+            مشروع سكني وتجاري وإداري متكامل على مساحة 4 أفدنة في منطقة 24 أكتوبر بمحافظة السويس.
+          </p>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <a href="https://www.facebook.com/share/1QuKXM76UT/" target="_blank" rel="noopener noreferrer" class="social-icon-btn fb social-fb" data-social="facebook" aria-label="صفحة الفيسبوك الرسمية">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm" target="_blank" rel="noopener noreferrer" class="social-icon-btn ig social-ig" data-social="instagram" aria-label="حساب الانستجرام الرسمي">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@elmndara4?is_from_webapp=1" target="_blank" rel="noopener noreferrer" class="social-icon-btn tt social-tt" data-social="tiktok" aria-label="حساب التيك توك الرسمي">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.1 15.68a6.34 6.34 0 0 0 10.82 4.48c1.77-1.77 2.38-4.37 2.38-6.84a8.2 8.2 0 0 0 4.83 1.57v-3.52a4.83 4.83 0 0 1-1.54-4.68z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 800; color: #C8B18A; margin-bottom: 1.25rem;">روابط سريعة</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+            <li><a href="index.html" style="color: #475569; text-decoration: none; font-weight: 500;">الرئيسية</a></li>
+            <li><a href="about.html" style="color: #475569; text-decoration: none; font-weight: 500;">عن الشركة ومجلس الإدارة</a></li>
+            <li><a href="gallery.html" style="color: #475569; text-decoration: none; font-weight: 500;">معرض الصور والتصميمات</a></li>
+            <li><a href="contact.html" style="color: #475569; text-decoration: none; font-weight: 500;">تواصل معنا وقنوات الاتصال</a></li>
+            <li><a href="admin.html" style="color: #C8B18A; text-decoration: none; font-weight: 600;">لوحة تحكم الميديا (CMS)</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Numbers -->
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 800; color: #C8B18A; margin-bottom: 1.25rem;">أرقام المبيعات المعتمدة</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9rem; font-family: monospace;">
+            <li><a href="tel:01092625243" style="color: #334155; text-decoration: none; font-weight: 600;">📞 01092625243</a></li>
+            <li><a href="tel:01029919352" style="color: #334155; text-decoration: none; font-weight: 600;">📞 01029919352</a></li>
+            <li><a href="tel:01029918865" style="color: #334155; text-decoration: none; font-weight: 600;">📞 01029918865</a></li>
+            <li><a href="tel:01036555502" style="color: #334155; text-decoration: none; font-weight: 600;">📞 01036555502</a></li>
+          </ul>
+        </div>
+
+        <!-- Location & Status -->
+        <div>
+          <h4 style="font-size: 1rem; font-weight: 800; color: #C8B18A; margin-bottom: 1.25rem;">مقر وموقع المشروع</h4>
+          <p style="font-size: 0.85rem; color: #334155; line-height: 1.7; margin-bottom: 1rem; font-weight: 500;">
+            محافظة السويس – منطقة 24 أكتوبر – بجوار مرور السويس والمجمع الطبي.
+          </p>
+          <div style="font-size: 0.75rem; color: #C8B18A; padding: 0.5rem; background: #FAF8F5; border-radius: 0.5rem; border: 1px solid rgba(200,177,138,0.3); font-weight: 600;">
+            حالة المشروع: مرحلة ما قبل التنفيذ (Pre-construction stage)
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div style="border-top: 1px solid #EAE6DF; padding-top: 1.75rem; font-size: 0.8rem; color: #94A3B8; text-align: center;">
+        © جميع الحقوق محفوظة لشركة El Mandara Real Estate – Compound Golden View.
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <div class="floating-whatsapp">
+    <a href="https://wa.me/201029919352" target="_blank" rel="noopener noreferrer" aria-label="واتساب المبيعات">
+      💬
+    </a>
+  </div>
+
+  <!-- MOBILE STICKY CONTACT BAR -->
+  <div class="mobile-sticky-bar">
+    <div class="grid-2">
+      <a href="tel:01036555502" class="btn-outline-gold" style="font-size: 0.85rem; padding: 0.65rem;">
+        📞 اتصل الآن
+      </a>
+      <a href="https://wa.me/201029919352" target="_blank" rel="noopener noreferrer" class="btn-gold" style="font-size: 0.85rem; padding: 0.65rem;">
+        💬 WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- SUCCESS CONFIRMATION MODAL -->
+  <div class="lightbox-modal" id="lead-success-modal">
+    <div class="glass-panel" style="max-width: 500px; padding: 2.25rem; text-align: center; border: 1.5px solid #10B981;">
+      <div style="font-size: 3rem; margin-bottom: 1rem; color: #10B981;">✓</div>
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.75rem;">تم تجهيز استفسارك بنجاح</h3>
+      <p style="font-size: 0.9rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem;">
+        تم فتح تطبيق WhatsApp على جهازك بنص الرسالة المنسق. يرجى مراجعة تفاصيل الرسالة والضغط على زر الإرسال لتصل مباشرة لمستشار مبيعات Compound Golden View.
+      </p>
+      <div id="modal-summary-text" style="background: #FAF8F5; padding: 1rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; color: #334155; text-align: right; white-space: pre-line; margin-bottom: 1.5rem; border: 1px solid #EAE6DF;"></div>
+      <div style="display: flex; gap: 0.75rem;">
+        <a id="modal-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-gold" style="flex: 1;">
+          فتح WhatsApp مجدداً ↗
+        </a>
+        <button onclick="closeSuccessModal()" class="btn-outline-gold" style="flex: 1;">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="إغلاق">✕</button>
+    <button class="lightbox-nav-btn lightbox-prev" onclick="prevLightbox()" aria-label="السابق">❮</button>
+    <button class="lightbox-nav-btn lightbox-next" onclick="nextLightbox()" aria-label="التالي">❯</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="" class="lightbox-image">
+      <div style="margin-top: 1.25rem; text-align: center;">
+        <h4 id="lightbox-title" style="color: #FFF; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem;"></h4>
+        <p id="lightbox-desc" style="color: #EAE6DF; font-size: 0.85rem; max-width: 650px; margin-bottom: 0.25rem;"></p>
+        <span id="lightbox-ref" style="color: #C8B18A; font-weight: 700; font-size: 0.85rem;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/site-data.js"></script>
+  <script src="js/site-config-override.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

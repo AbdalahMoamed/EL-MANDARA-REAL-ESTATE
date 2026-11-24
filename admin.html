@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم وإدارة المحتوى | Compound Golden View</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-tab-btn {
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      background: #FAF8F5;
+      color: #475569;
+      border: 1px solid #EAE6DF;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .admin-tab-btn.active {
+      background: #C8B18A;
+      color: #FFFFFF;
+      border-color: #C8B18A;
+      box-shadow: 0 4px 12px rgba(200,177,138,0.3);
+    }
+    .admin-tab-btn:hover:not(.active) {
+      border-color: #C8B18A;
+      color: #C8B18A;
+    }
+    .admin-input, .admin-select, .admin-textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: 0.5rem;
+      background: #FFFFFF;
+      border: 1.5px solid #EAE6DF;
+      color: #1E293B;
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .admin-input:focus, .admin-select:focus, .admin-textarea:focus {
+      border-color: #C8B18A;
+    }
+    .admin-card {
+      background: #FFFFFF;
+      border: 1px solid #EAE6DF;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: border-color 0.2s;
+    }
+    .admin-card:hover {
+      border-color: rgba(200,177,138,0.5);
+    }
+    .category-filter-chip {
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: #FAF8F5;
+      color: #64748B;
+      border: 1px solid #EAE6DF;
+      transition: all 0.2s;
+    }
+    .category-filter-chip.active {
+      background: #C8B18A;
+      color: #FFFFFF;
+      border-color: #C8B18A;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #CBD5E1;
+      transition: .3s;
+      border-radius: 24px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .toggle-slider {
+      background-color: #10B981;
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+    .status-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      animation: slideUp 0.3s ease forwards;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .status-toast.success {
+      background: #ECFDF5;
+      border: 1.5px solid #10B981;
+      color: #065F46;
+    }
+    .status-toast.error {
+      background: #FEF2F2;
+      border: 1.5px solid #EF4444;
+      color: #991B1B;
+    }
+    .status-toast.saving {
+      background: #FFFBEB;
+      border: 1.5px solid #F59E0B;
+      color: #92400E;
+    }
+    .unsaved-banner {
+      background: #FFFBEB;
+      border: 1px solid #F59E0B;
+      color: #92400E;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: 1.25rem;
+      border: 1px solid #EAE6DF;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      text-align: right;
+    }
+  </style>
+</head>
+<body style="background-color:#FFFFFF; color:#1E293B;">
+
+  <!-- Sticky Header -->
+  <header class="sticky-header">
+    <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" class="brand-logo" aria-label="الرئيسية">
+        <img src="public/images/brand/el-mandara-company-logo.png"
+             onerror="this.onerror=null; this.src='public/images/brand/golden-view-logo.png';"
+             alt="شركة المندرة للتسويق العقاري" class="brand-company-logo" style="height: 44px; width: auto; border-radius: 6px; object-fit: contain;">
+      </a>
+
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <div id="unsaved-warning" class="unsaved-banner">
+          ⚠️ لديك تعديلات غير محفوظة
+        </div>
+
+        <button id="main-save-btn" onclick="saveAllChanges()" class="btn-gold" style="font-size: 0.85rem; padding: 0.55rem 1.4rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span>💾 حفظ كافة التغييرات</span>
+        </button>
+
+        <a href="index.html" onclick="return confirmLeaveCMS(event)" class="btn-outline-gold" style="font-size: 0.8rem; padding: 0.45rem 1rem;">
+          ⇽ العودة للموقع
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 6.5rem; padding-bottom: 5rem; background-color:#FFFFFF;">
+    <div class="container" style="max-width: 1150px;">
+      
+      <!-- Top Title & Quick Actions -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; border-bottom: 1px solid #EAE6DF; padding-bottom: 1.5rem; margin-bottom: 1.75rem;">
+        <div>
+          <div style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: #C8B18A; font-weight: 700; background: #FAF8F5; padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(200,177,138,0.3); margin-bottom: 0.35rem;">
+            <span>⚙️ لوحة إدارة المحتوى والميديا (CMS)</span>
+          </div>
+          <h1 style="font-size: 1.85rem; font-weight: 800; color: #C8B18A;">
+            إدارة بيانات وميديا Compound Golden View
+          </h1>
+          <p style="font-size: 0.85rem; color: #64748B; margin-top: 0.25rem; font-weight: 500;">
+            تعديل مسارات الصور والصور، إعدادات السوشيال ميديا، أرقام المبيعات، ومزامنة التغييرات تلقائياً مع الموقع.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+          <button onclick="openImportModal()" class="btn-outline-gold" style="font-size: 0.82rem; padding: 0.55rem 1.1rem; display: flex; align-items: center; gap: 0.4rem;">
+            📥 استيراد JSON
+          </button>
+          <button onclick="exportConfigJson()" class="btn-outline-gold" style="font-size: 0.82rem; padding: 0.55rem 1.1rem; display: flex; align-items: center; gap: 0.4rem;">
+            📤 تصدير JSON
+          </button>
+          <button onclick="restoreDefaults()" class="btn-outline-gold" style="font-size: 0.82rem; padding: 0.55rem 1rem; color: #DC2626; border-color: #FCA5A5;">
+            ↺ استعادة الافتراضي
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid #EAE6DF; padding-bottom: 0.75rem;">
+        <button class="admin-tab-btn active" onclick="switchAdminTab('media', this)">
+          🖼️ إدارة الصور والميديا (<span id="gallery-count-badge">12</span>)
+        </button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('social', this)">
+          🌐 إعدادات وسائل التواصل (Social Media)
+        </button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('contacts', this)">
+          📞 أرقام المبيعات وقنوات الاتصال
+        </button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('company', this)">
+          👥 بيانات الشركة ومجلس الإدارة
+        </button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('video', this)">
+          🎬 فيديو المشروع
+        </button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('logos', this)">
+          🛡️ إدارة الشعارات الرسمية
+        </button>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 1: IMAGE MANAGEMENT SYSTEM -->
+      <!-- ========================================== -->
+      <div id="tab-media" class="admin-tab-content">
+        <!-- Top Toolbar: Categories & Add Button -->
+        <div class="glass-panel" style="padding: 1.25rem; margin-bottom: 1.75rem; background: #FFFFFF; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: #C8B18A; margin-bottom: 0.5rem;">
+              تصنيفات الصور المعتمدة (8 تصنيفات):
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;" id="media-category-filters">
+              <span class="category-filter-chip active" onclick="filterCmsMedia('all', this)">الكل</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('main-homepage', this)">صور الصفحة الرئيسية</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('project-gallery', this)">معرض صور المشروع</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('garage', this)">الجراج</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('streets', this)">شوارع الكمبوند</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('entrances', this)">مداخل المباني</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('daytime', this)">صور نهارية</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('nighttime', this)">صور ليلية</span>
+              <span class="category-filter-chip" onclick="filterCmsMedia('additional', this)">صور إضافية للمشروع</span>
+            </div>
+          </div>
+
+          <div>
+            <button onclick="openAddNewImageModal()" class="btn-gold" style="font-size: 0.82rem; padding: 0.55rem 1.25rem;">
+              ➕ إضافة صورة جديدة
+            </button>
+          </div>
+        </div>
+
+        <!-- Media Grid -->
+        <div id="media-cards-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.5rem;">
+          <!-- Dynamically Rendered -->
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: SOCIAL MEDIA SETTINGS -->
+      <!-- ========================================== -->
+      <div id="tab-social" class="admin-tab-content" style="display: none;">
+        <div class="glass-panel" style="padding: 2.25rem; background: #FFFFFF; max-width: 900px; margin: 0 auto;">
+          <div style="border-bottom: 1px solid #EAE6DF; padding-bottom: 1.25rem; margin-bottom: 2rem;">
+            <h2 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.4rem;">
+              إعدادات وسائل التواصل الاجتماعي الرسمية (Social Media Settings)
+            </h2>
+            <p style="font-size: 0.85rem; color: #64748B;">
+              تعديل روابط صفحات التواصل المعتمدة لشركة المندرة وكمبوند جولدن فيو، مع إمكانية تفعيل أو تعطيل أي منصة، ومعاينتها مباشرة.
+            </p>
+          </div>
+
+          <!-- Social Channels Form -->
+          <div style="display: flex; flex-direction: column; gap: 1.75rem; margin-bottom: 2.5rem;">
+            
+            <!-- 1. Facebook -->
+            <div class="admin-card" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 280px;">
+                <div class="social-icon-btn fb" style="width: 44px; height: 44px;">
+                  <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </div>
+                <div style="flex: 1;">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #1E293B; margin-bottom: 0.35rem;">
+                    رابط صفحة Facebook الرسمية:
+                  </label>
+                  <input type="url" id="social-fb-url" class="admin-input" dir="ltr" oninput="markDirty(); updateSocialPreview();">
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 0.75rem; color: #64748B; font-weight: 600;">تفعيل الأيقونة بالموقع:</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="social-fb-toggle" onchange="markDirty(); updateSocialPreview();" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 2. Instagram -->
+            <div class="admin-card" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 280px;">
+                <div class="social-icon-btn ig" style="width: 44px; height: 44px;">
+                  <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </div>
+                <div style="flex: 1;">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #1E293B; margin-bottom: 0.35rem;">
+                    رابط حساب Instagram الرسمي:
+                  </label>
+                  <input type="url" id="social-ig-url" class="admin-input" dir="ltr" oninput="markDirty(); updateSocialPreview();">
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 0.75rem; color: #64748B; font-weight: 600;">تفعيل الأيقونة بالموقع:</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="social-ig-toggle" onchange="markDirty(); updateSocialPreview();" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 3. TikTok -->
+            <div class="admin-card" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 280px;">
+                <div class="social-icon-btn tt" style="width: 44px; height: 44px;">
+                  <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.1 15.68a6.34 6.34 0 0 0 10.82 4.48c1.77-1.77 2.38-4.37 2.38-6.84a8.2 8.2 0 0 0 4.83 1.57v-3.52a4.83 4.83 0 0 1-1.54-4.68z"/></svg>
+                </div>
+                <div style="flex: 1;">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #1E293B; margin-bottom: 0.35rem;">
+                    رابط حساب TikTok الرسمي:
+                  </label>
+                  <input type="url" id="social-tt-url" class="admin-input" dir="ltr" oninput="markDirty(); updateSocialPreview();">
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 0.75rem; color: #64748B; font-weight: 600;">تفعيل الأيقونة بالموقع:</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="social-tt-toggle" onchange="markDirty(); updateSocialPreview();" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Preview Box -->
+          <div style="padding: 1.5rem; border-radius: 1rem; background: #FAF8F5; border: 1px solid #EAE6DF; margin-bottom: 2rem;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #C8B18A; margin-bottom: 0.75rem;">
+              👁️ معاينة مباشرة للأيقونات كما ستظهر في الفوتر وصفحة التواصل:
+            </div>
+            <div id="social-live-preview" style="display: flex; gap: 1rem; align-items: center; padding: 1rem; background: #FFFFFF; border-radius: 0.75rem; border: 1px solid #EAE6DF;">
+              <!-- Dynamic preview -->
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button onclick="saveAllChanges()" class="btn-gold" style="padding: 0.75rem 2rem; font-size: 0.9rem;">
+              💾 حفظ إعدادات التواصل الاجتماعي
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: CONTACTS & SALES NUMBERS -->
+      <!-- ========================================== -->
+      <div id="tab-contacts" class="admin-tab-content" style="display: none;">
+        <div class="glass-panel" style="padding: 2.25rem; background: #FFFFFF; max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; margin-bottom: 1.5rem;">
+            أرقام المبيعات وقنوات الاتصال المعتمدة
+          </h2>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: #64748B; margin-bottom: 0.35rem; font-weight: 700;">رقم الاتصال المباشر الأساسي (Primary Call):</label>
+              <input type="text" id="cfg-primary-call" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: #64748B; margin-bottom: 0.35rem; font-weight: 700;">رقم الواتساب الرئيسي (WhatsApp):</label>
+              <input type="text" id="cfg-primary-wa" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+          </div>
+
+          <h3 style="font-size: 1rem; font-weight: 700; color: #C8B18A; margin-bottom: 1rem;">
+            أرقام الهواتف الأربعة المعتمدة:
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.85rem; margin-bottom: 2rem;">
+            <div>
+              <label style="display: block; font-size: 0.7rem; color: #64748B; margin-bottom: 0.25rem;">خط مبيعات 01:</label>
+              <input type="text" id="cfg-phone-1" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.7rem; color: #64748B; margin-bottom: 0.25rem;">خط مبيعات 02:</label>
+              <input type="text" id="cfg-phone-2" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.7rem; color: #64748B; margin-bottom: 0.25rem;">خط مبيعات 03:</label>
+              <input type="text" id="cfg-phone-3" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.7rem; color: #64748B; margin-bottom: 0.25rem;">خط مبيعات 04:</label>
+              <input type="text" id="cfg-phone-4" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button onclick="saveAllChanges()" class="btn-gold" style="padding: 0.75rem 2rem; font-size: 0.9rem;">
+              💾 حفظ تعديلات أرقام الاتصال
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: COMPANY & BOARD -->
+      <!-- ========================================== -->
+      <div id="tab-company" class="admin-tab-content" style="display: none;">
+        <div class="glass-panel" style="padding: 2.25rem; background: #FFFFFF; max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; margin-bottom: 1.5rem;">
+            أعضاء مجلس الإدارة لشركة El Mandara
+          </h2>
+          <div id="board-members-container" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button onclick="saveAllChanges()" class="btn-gold" style="padding: 0.75rem 2rem; font-size: 0.9rem;">
+              💾 حفظ بيانات مجلس الإدارة
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 5: VIDEO -->
+      <!-- ========================================== -->
+      <div id="tab-video" class="admin-tab-content" style="display: none;">
+        <div class="glass-panel" style="padding: 2.25rem; background: #FFFFFF; max-width: 900px; margin: 0 auto;">
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; margin-bottom: 1.5rem;">
+            فيديو المشروع الاستعراضي
+          </h2>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: #64748B; margin-bottom: 0.35rem; font-weight: 700;">عنوان الفيديو بالعربية:</label>
+              <input type="text" id="cfg-video-title" class="admin-input" oninput="markDirty()">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: #64748B; margin-bottom: 0.35rem; font-weight: 700;">مسار ملف الفيديو (Video Source):</label>
+              <input type="text" id="cfg-video-src" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: #64748B; margin-bottom: 0.35rem; font-weight: 700;">صورة غلاف الفيديو (Poster Thumbnail):</label>
+              <input type="text" id="cfg-video-thumb" class="admin-input" dir="ltr" oninput="markDirty()">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button onclick="saveAllChanges()" class="btn-gold" style="padding: 0.75rem 2rem; font-size: 0.9rem;">
+              💾 حفظ إعدادات الفيديو
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- TAB 6: LOGO MANAGEMENT -->
+      <!-- ========================================== -->
+      <div id="tab-logos" class="admin-tab-content" style="display: none;">
+        <div class="glass-panel" style="padding: 2.25rem; background: #FFFFFF; max-width: 950px; margin: 0 auto;">
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.5rem;">
+            🛡️ إدارة الشعارات الرسمية
+          </h2>
+          <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 2rem; line-height: 1.7;">
+            قم برفع واستبدال شعار شركة El Mandara وشعار Compound Golden View. بعد الرفع، اضغط "حفظ" لتطبيق الشعارات على جميع صفحات الموقع.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2rem;">
+
+            <!-- Company Logo Card -->
+            <div style="border: 1.5px solid #EAE6DF; border-radius: 1.25rem; padding: 1.75rem; background: #FAF8F5;">
+              <div style="font-size: 0.75rem; font-weight: 800; color: #C8B18A; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+                شعار الشركة — El Mandara Real Estate
+              </div>
+              <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 1.25rem; line-height: 1.6;">
+                يظهر في شريط التنقل والتذييل على جميع صفحات الموقع.
+              </p>
+
+              <!-- Current Preview -->
+              <div style="border: 1px dashed #C8B18A; border-radius: 0.75rem; padding: 1.25rem; text-align: center; background: #FFFFFF; margin-bottom: 1.25rem;">
+                <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.6rem;">الشعار الحالي:</div>
+                <img id="company-logo-preview"
+                     src="public/images/brand/el-mandara-company-logo.png"
+                     onerror="this.onerror=null; this.src='public/images/brand/golden-view-logo.png';"
+                     alt="شعار شركة المندرة" class="brand-company-logo"
+                     style="max-height: 90px; max-width: 100%; object-fit: contain; border-radius: 6px; display: block; margin: 0 auto;">
+              </div>
+
+              <!-- Upload -->
+              <label style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.75rem 1.25rem; border: 1.5px solid #C8B18A; border-radius: 0.75rem; cursor: pointer; background: #FFFFFF; color: #C8B18A; font-weight: 700; font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#FAF8F5'" onmouseout="this.style.background='#FFFFFF'">
+                📁 اختر شعاراً جديداً لشركة El Mandara
+                <input type="file" accept="image/*" style="display: none;" onchange="handleCompanyLogoUpload(this)">
+              </label>
+              <p id="company-logo-filename" style="font-size: 0.72rem; color: #94A3B8; text-align: center; margin-top: 0.5rem; dir: ltr;">لم يتم اختيار ملف بعد</p>
+
+              <button onclick="saveAllChanges()" class="btn-gold" style="width: 100%; margin-top: 1rem; padding: 0.65rem 1.25rem; font-size: 0.85rem;">
+                💾 حفظ شعار الشركة
+              </button>
+            </div>
+
+            <!-- Project Logo Card -->
+            <div style="border: 1.5px solid #EAE6DF; border-radius: 1.25rem; padding: 1.75rem; background: #FAF8F5;">
+              <div style="font-size: 0.75rem; font-weight: 800; color: #C8B18A; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+                شعار المشروع — Compound Golden View
+              </div>
+              <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 1.25rem; line-height: 1.6;">
+                يظهر في الهيدر الرئيسي (Hero Section) وصفحة المعرض وقسم الفيديو.
+              </p>
+
+              <!-- Current Preview -->
+              <div style="border: 1px dashed #C8B18A; border-radius: 0.75rem; padding: 1.25rem; text-align: center; background: #FFFFFF; margin-bottom: 1.25rem;">
+                <div style="font-size: 0.7rem; color: #94A3B8; margin-bottom: 0.6rem;">الشعار الحالي:</div>
+                <img id="project-logo-preview"
+                     src="public/images/brand/golden-view-compound-logo.png"
+                     onerror="this.onerror=null; this.src='public/images/brand/golden-view-logo.png';"
+                     alt="شعار كمبوند جولدن فيو" class="brand-project-logo"
+                     style="max-height: 90px; max-width: 100%; object-fit: contain; border-radius: 6px; display: block; margin: 0 auto;">
+              </div>
+
+              <!-- Upload -->
+              <label style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.75rem 1.25rem; border: 1.5px solid #C8B18A; border-radius: 0.75rem; cursor: pointer; background: #FFFFFF; color: #C8B18A; font-weight: 700; font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#FAF8F5'" onmouseout="this.style.background='#FFFFFF'">
+                📁 اختر شعاراً جديداً لـ Golden View
+                <input type="file" accept="image/*" style="display: none;" onchange="handleProjectLogoUpload(this)">
+              </label>
+              <p id="project-logo-filename" style="font-size: 0.72rem; color: #94A3B8; text-align: center; margin-top: 0.5rem; dir: ltr;">لم يتم اختيار ملف بعد</p>
+
+              <button onclick="saveAllChanges()" class="btn-gold" style="width: 100%; margin-top: 1rem; padding: 0.65rem 1.25rem; font-size: 0.85rem;">
+                💾 حفظ شعار المشروع
+              </button>
+            </div>
+          </div>
+
+          <!-- Info Notice -->
+          <div style="margin-top: 2rem; padding: 1rem 1.25rem; background: #FFF9EF; border: 1px solid rgba(200,177,138,0.4); border-radius: 0.75rem; font-size: 0.82rem; color: #64748B; line-height: 1.7;">
+            <strong style="color: #C8B18A;">ملاحظة:</strong>
+            يتم تخزين الشعارات في IndexedDB (تخزين المتصفح الدائم) وفي ملف الإعدادات على الخادم (إن كان متاحاً).
+            بعد الحفظ، يتم تطبيق الشعارات تلقائياً على جميع الصفحات عند تحميلها. للحصول على أفضل النتائج، استخدم صور بامتداد JPG أو PNG بأبعاد لا تقل عن 300×100 بيكسل.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: ADD NEW IMAGE -->
+  <!-- ========================================== -->
+  <div id="add-image-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #EAE6DF; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A;">
+          ➕ إضافة صورة جديدة للمشروع
+        </h3>
+        <button onclick="closeModal('add-image-modal')" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: #64748B;">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">عنوان الصورة بالعربية *:</label>
+          <input type="text" id="new-img-title" class="admin-input" placeholder="مثال: واجهة المبنى السكني الحديثة">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">التصنيف *:</label>
+            <select id="new-img-category" class="admin-select" onchange="syncNewCategoryName(this.value)">
+              <option value="main-homepage">صور الصفحة الرئيسية</option>
+              <option value="project-gallery">معرض صور المشروع</option>
+              <option value="garage">الجراج</option>
+              <option value="streets">شوارع الكمبوند</option>
+              <option value="entrances">مداخل المباني</option>
+              <option value="daytime">صور نهارية</option>
+              <option value="nighttime">صور ليلية</option>
+              <option value="additional">صور إضافية للمشروع</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">القسم في الموقع *:</label>
+            <select id="new-img-section" class="admin-select">
+              <option value="معرض صور المشروع">معرض صور المشروع</option>
+              <option value="الهيدر الرئيسي (Hero Section)">الهيدر الرئيسي (Hero Section)</option>
+              <option value="معاينة الصور بالرئيسية">معاينة الصور بالرئيسية</option>
+              <option value="قسم الجراجات">قسم الجراجات</option>
+              <option value="محاور وشوارع المشروع">محاور وشوارع المشروع</option>
+              <option value="المداخل الفندقية">المداخل الفندقية</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">مسار ملف الصورة أو رفع ملف *:</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="new-img-src" class="admin-input" dir="ltr" placeholder="public/images/project/example.jpg" style="flex: 1;" oninput="updateNewImagePreview(this.value)">
+            <label class="btn-outline-gold" style="font-size: 0.8rem; padding: 0.55rem 1rem; cursor: pointer; white-space: nowrap;">
+              📁 رفع صورة
+              <input type="file" accept="image/*" style="display: none;" onchange="handleNewImageFileUpload(this)">
+            </label>
+          </div>
+        </div>
+
+        <!-- Image Preview -->
+        <div style="border: 1px dashed #EAE6DF; border-radius: 0.75rem; padding: 1rem; text-align: center; background: #FAF8F5;">
+          <div style="font-size: 0.7rem; color: #64748B; margin-bottom: 0.5rem;">معاينة الصورة المرفوعة:</div>
+          <img id="new-img-preview-tag" src="public/images/project/main-project-rendering.png" alt="معاينة" style="max-height: 140px; border-radius: 0.5rem; object-fit: cover; margin: 0 auto; display: block;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem;">الوصف بالعربية:</label>
+          <textarea id="new-img-desc" class="admin-textarea" rows="2" placeholder="وصف تفصيلي للصوره أو المنظور المعماري..."></textarea>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button onclick="closeModal('add-image-modal')" class="btn-outline-gold">إلغاء</button>
+        <button onclick="confirmAddNewImage()" class="btn-gold">تأكيد وإضافة الصورة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: JSON IMPORT & PREVIEW -->
+  <!-- ========================================== -->
+  <div id="import-json-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #EAE6DF; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: #C8B18A;">
+          📥 استيراد ملف الإعدادات (JSON Import)
+        </h3>
+        <button onclick="closeModal('import-json-modal')" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: #64748B;">✕</button>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.85rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
+          اختر ملف التكوين <code style="background:#FAF8F5; border:1px solid #EAE6DF; padding:0.15rem 0.4rem; border-radius:0.25rem;">golden-view-config.json</code> أو أي ملف إعدادات صالح. سيتم فحص والتحقق من صحة الملف أولاً وعرض معاينة للتغييرات قبل التطبيق الفعلي.
+        </p>
+
+        <div style="border: 2px dashed #C8B18A; padding: 2rem; border-radius: 1rem; text-align: center; background: #FAF8F5; cursor: pointer;" onclick="document.getElementById('json-file-input').click()">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📄</div>
+          <div style="font-weight: 700; color: #1E293B; font-size: 0.95rem;">انقر لاختيار ملف JSON من جهازك</div>
+          <div style="font-size: 0.75rem; color: #64748B; margin-top: 0.35rem;">أو اسحب وأفلت الملف هنا</div>
+          <input type="file" id="json-file-input" accept=".json,application/json" style="display: none;" onchange="handleJsonFileSelected(this)">
+        </div>
+
+        <div id="import-error-box" style="display: none; padding: 1rem; border-radius: 0.75rem; background: #FEF2F2; border: 1.5px solid #EF4444; color: #991B1B; font-size: 0.85rem; margin-top: 1rem;"></div>
+
+        <!-- Preview of Imported Data -->
+        <div id="import-preview-box" style="display: none; margin-top: 1.5rem; background: #FAF8F5; border: 1px solid #EAE6DF; border-radius: 0.75rem; padding: 1.25rem;">
+          <h4 style="font-size: 0.9rem; font-weight: 800; color: #C8B18A; margin-bottom: 0.75rem;">
+            🔍 معاينة بيانات الملف قبل التطبيق:
+          </h4>
+          <div id="import-summary-list" style="font-size: 0.8rem; color: #334155; line-height: 1.8;"></div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button onclick="closeModal('import-json-modal')" class="btn-outline-gold">إلغاء</button>
+        <button id="confirm-import-btn" onclick="applyImportedConfig()" class="btn-gold" style="display: none;">
+          تأكيد واستيراد الإعدادات ↗
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/storage.js"></script>
+  <script src="js/site-data.js"></script>
+  <script src="js/site-config-override.js"></script>
+  <script>
+    // State management
+    let cfg = JSON.parse(JSON.stringify(window.GOLDEN_VIEW_CONFIG || {}));
+    let isDirty = false;
+    let pendingImportConfig = null;
+    let activeMediaFilter = 'all';
+
+    const CATEGORY_NAMES = {
+      'main-homepage': 'صور الصفحة الرئيسية',
+      'project-gallery': 'معرض صور المشروع',
+      'garage': 'الجراج',
+      'streets': 'شوارع الكمبوند',
+      'entrances': 'مداخل المباني',
+      'daytime': 'صور نهارية',
+      'nighttime': 'صور ليلية',
+      'additional': 'صور إضافية للمشروع'
+    };
+
+    // 1. Mark Form Dirty & Warn before Unload
+    function markDirty() {
+      isDirty = true;
+      const warnEl = document.getElementById('unsaved-warning');
+      if (warnEl) warnEl.style.display = 'inline-flex';
+      const saveBtn = document.getElementById('main-save-btn');
+      if (saveBtn) saveBtn.style.boxShadow = '0 0 15px rgba(200,177,138,0.7)';
+    }
+
+    function clearDirty() {
+      isDirty = false;
+      const warnEl = document.getElementById('unsaved-warning');
+      if (warnEl) warnEl.style.display = 'none';
+      const saveBtn = document.getElementById('main-save-btn');
+      if (saveBtn) saveBtn.style.boxShadow = 'none';
+    }
+
+    window.addEventListener('beforeunload', (e) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = 'لديك تعديلات غير محفوظة، هل أنت متأكد من مغادرة لوحة التحكم؟';
+        return e.returnValue;
+      }
+    });
+
+    function confirmLeaveCMS(e) {
+      if (isDirty) {
+        if (!confirm('لديك تعديلات لم تقم بحفظها في لوحة التحكم. هل تود المغادرة دون حفظ؟')) {
+          e.preventDefault();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // 2. Tabs Switcher
+    function switchAdminTab(tabId, btn) {
+      document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.admin-tab-content').forEach(c => c.style.display = 'none');
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.style.display = 'block';
+    }
+
+    // 3. Status Notification Toasts
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `status-toast ${type}`;
+      
+      let icon = '✓';
+      if (type === 'error') icon = '✕';
+      if (type === 'saving') icon = '⏳';
+
+      toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      if (type !== 'saving') {
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(20px)';
+          setTimeout(() => toast.remove(), 300);
+        }, 4000);
+      }
+      return toast;
+    }
+
+    // 4. Initialization of UI
+    async function initAdminUI() {
+      // Re-hydrate from IndexedDB / Storage engine if available
+      if (window.GoldenViewStorage) {
+        try {
+          const savedConfig = await window.GoldenViewStorage.getConfig();
+          if (savedConfig && typeof savedConfig === 'object') {
+            cfg = Object.assign({}, cfg, savedConfig);
+            if (savedConfig.gallery && Array.isArray(savedConfig.gallery)) {
+              cfg.gallery = savedConfig.gallery;
+            }
+          }
+        } catch (e) {
+          console.warn('Admin config hydration warning:', e);
+        }
+      }
+
+      // Social Config Normalization
+      if (!cfg.socialMedia) {
+        cfg.socialMedia = {
+          facebook: { url: cfg.facebookUrl || "https://www.facebook.com/share/1QuKXM76UT/", enabled: true, label: "فيسبوك" },
+          instagram: { url: cfg.instagramUrl || "https://www.instagram.com/elmn.dara?stkn=dzUzcjRxaHk4amlm", enabled: true, label: "انستجرام" },
+          tiktok: { url: cfg.tiktokUrl || "https://www.tiktok.com/@elmndara4?is_from_webapp=1", enabled: true, label: "تيك توك" }
+        };
+      }
+
+      renderMediaCards();
+      renderSocialTab();
+      renderContactsTab();
+      renderBoardTab();
+      renderVideoTab();
+      renderLogosTab();
+      updateSocialPreview();
+    }
+
+    // 5. Render Media Cards with Categories & Assigned Section
+    function renderMediaCards() {
+      const container = document.getElementById('media-cards-container');
+      const badge = document.getElementById('gallery-count-badge');
+      if (badge && cfg.gallery) badge.textContent = cfg.gallery.length;
+
+      if (!container || !cfg.gallery) return;
+
+      const items = cfg.gallery.map((item, idx) => ({ item, idx }));
+      const filtered = activeMediaFilter === 'all' 
+        ? items 
+        : items.filter(x => x.item.category === activeMediaFilter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; padding: 3rem; text-align: center; color: #64748B; background: #FAF8F5; border-radius: 1rem; border: 1px dashed #EAE6DF;">
+            لا توجد صور في هذا التصنيف حالياً. يمكنك إضافة صورة جديدة أو اختيار تصنيف آخر.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(({ item, idx }) => {
+        const thumbSrc = window.getGoldenViewImageUrl ? window.getGoldenViewImageUrl(item.imageSrc, item.updatedAt) : item.imageSrc;
+        return `
+        <div class="admin-card text-right" id="media-card-${idx}">
+          <div style="position: relative; aspect-ratio: 16/10; border-radius: 0.75rem; overflow: hidden; margin-bottom: 1rem; background: #FAF8F5; border: 1px solid #EAE6DF;">
+            <img id="media-thumb-${idx}" src="${thumbSrc}" alt="${item.alt || item.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='public/images/project/شارع المجمع 2.png';">
+            
+            <div style="position: absolute; top: 0.5rem; right: 0.5rem; display: flex; gap: 0.35rem;">
+              <span style="background: rgba(200,177,138,0.92); color: #FFFFFF; font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 9999px;">
+                ${item.categoryName || CATEGORY_NAMES[item.category] || 'معرض المشروع'}
+              </span>
+            </div>
+
+            <div style="position: absolute; bottom: 0.5rem; right: 0.5rem;">
+              <span style="background: rgba(15,23,42,0.88); color: #C8B18A; font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 0.35rem;">
+                📌 ${item.websiteSection || 'معرض صور المشروع'}
+              </span>
+            </div>
+          </div>
+
+          <!-- Section Assignment Dropdown -->
+          <div style="margin-bottom: 0.75rem;">
+            <label style="display: block; font-size: 0.7rem; color: #334155; margin-bottom: 0.25rem; font-weight: 700;">القسم المخصص له في الموقع:</label>
+            <select onchange="updateGalleryItem(${idx}, 'websiteSection', this.value)" class="admin-select" style="font-size: 0.78rem;">
+              <option value="الهيدر الرئيسي (Hero Section)" ${item.websiteSection === 'الهيدر الرئيسي (Hero Section)' ? 'selected' : ''}>الهيدر الرئيسي (Hero Section)</option>
+              <option value="معاينة الصور بالرئيسية" ${item.websiteSection === 'معاينة الصور بالرئيسية' ? 'selected' : ''}>معاينة الصور بالرئيسية</option>
+              <option value="معرض صور المشروع" ${item.websiteSection === 'معرض صور المشروع' ? 'selected' : ''}>معرض صور المشروع</option>
+              <option value="قسم الجراجات" ${item.websiteSection === 'قسم الجراجات' ? 'selected' : ''}>قسم الجراجات</option>
+              <option value="محاور وشوارع المشروع" ${item.websiteSection === 'محاور وشوارع المشروع' ? 'selected' : ''}>محاور وشوارع المشروع</option>
+              <option value="المداخل الفندقية" ${item.websiteSection === 'المداخل الفندقية' ? 'selected' : ''}>المداخل الفندقية</option>
+            </select>
+          </div>
+
+          <!-- Category Dropdown -->
+          <div style="margin-bottom: 0.75rem;">
+            <label style="display: block; font-size: 0.7rem; color: #334155; margin-bottom: 0.25rem; font-weight: 700;">التصنيف:</label>
+            <select onchange="updateGalleryItemCategory(${idx}, this.value)" class="admin-select" style="font-size: 0.78rem;">
+              <option value="main-homepage" ${item.category === 'main-homepage' ? 'selected' : ''}>صور الصفحة الرئيسية</option>
+              <option value="project-gallery" ${item.category === 'project-gallery' ? 'selected' : ''}>معرض صور المشروع</option>
+              <option value="garage" ${item.category === 'garage' ? 'selected' : ''}>الجراج</option>
+              <option value="streets" ${item.category === 'streets' ? 'selected' : ''}>شوارع الكمبوند</option>
+              <option value="entrances" ${item.category === 'entrances' ? 'selected' : ''}>مداخل المباني</option>
+              <option value="daytime" ${item.category === 'daytime' ? 'selected' : ''}>صور نهارية</option>
+              <option value="nighttime" ${item.category === 'nighttime' ? 'selected' : ''}>صور ليلية</option>
+              <option value="additional" ${item.category === 'additional' ? 'selected' : ''}>صور إضافية للمشروع</option>
+            </select>
+          </div>
+
+          <!-- Title -->
+          <div style="margin-bottom: 0.75rem;">
+            <label style="display: block; font-size: 0.7rem; color: #64748B; margin-bottom: 0.25rem; font-weight: 600;">العنوان بالعربية:</label>
+            <input type="text" value="${item.title}" oninput="updateGalleryItem(${idx}, 'title', this.value)" class="admin-input">
+          </div>
+
+          <!-- Image Path & Replace Button -->
+          <div style="margin-bottom: 0.75rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+              <label style="font-size: 0.7rem; color: #64748B; font-weight: 600;">مسار ملف الصورة:</label>
+              <label style="font-size: 0.65rem; color: #C8B18A; font-weight: 700; cursor: pointer;">
+                🔄 استبدال برفع ملف
+                <input type="file" accept="image/*" style="display: none;" onchange="handleReplaceImageFile(${idx}, this)">
+              </label>
+            </div>
+            <input type="text" dir="ltr" value="${item.imageSrc}" oninput="updateGalleryItem(${idx}, 'imageSrc', this.value); updateThumb(${idx}, this.value);" class="admin-input" style="font-family: monospace; font-size: 0.75rem;">
+          </div>
+
+          <!-- Description -->
+          <div style="margin-bottom: 1rem;">
+            <label style="display: block; font-size: 0.7rem; color: #64748B; margin-bottom: 0.25rem; font-weight: 600;">الوصف بالعربية:</label>
+            <textarea oninput="updateGalleryItem(${idx}, 'description', this.value)" class="admin-textarea" rows="2" style="font-size: 0.8rem;">${item.description || ''}</textarea>
+          </div>
+
+          <!-- Actions -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid #EAE6DF;">
+            <span style="font-size: 0.7rem; color: #94A3B8; font-family: monospace;">${item.placeholderRef || ''}</span>
+            <button onclick="confirmDeleteImage(${idx})" style="background: none; border: 1px solid #FCA5A5; color: #DC2626; border-radius: 0.5rem; padding: 0.3rem 0.65rem; font-size: 0.72rem; cursor: pointer; font-weight: 700;">
+              🗑 حذف الصورة
+            </button>
+          </div>
+        </div>
+        `;
+      }).join('');
+    }
+
+    function filterCmsMedia(cat, btn) {
+      activeMediaFilter = cat;
+      document.querySelectorAll('#media-category-filters .category-filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      renderMediaCards();
+    }
+
+    function updateThumb(idx, src) {
+      const img = document.getElementById(`media-thumb-${idx}`);
+      if (img) img.src = src;
+    }
+
+    function updateGalleryItem(idx, field, value) {
+      if (cfg.gallery && cfg.gallery[idx]) {
+        cfg.gallery[idx][field] = value;
+        markDirty();
+      }
+    }
+
+    function updateGalleryItemCategory(idx, catValue) {
+      if (cfg.gallery && cfg.gallery[idx]) {
+        cfg.gallery[idx].category = catValue;
+        cfg.gallery[idx].categoryName = CATEGORY_NAMES[catValue] || 'معرض المشروع';
+        markDirty();
+      }
+    }
+
+    function handleReplaceImageFile(idx, input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const dataUrl = e.target.result;
+          cfg.gallery[idx].imageSrc = dataUrl;
+          cfg.gallery[idx].updatedAt = Date.now();
+          updateThumb(idx, dataUrl);
+          const inputEl = document.querySelector(`#media-card-${idx} input[dir="ltr"]`);
+          if (inputEl) inputEl.value = `public/images/project/${file.name}`;
+          markDirty();
+          showToast(`تم استبدال صورة "${cfg.gallery[idx].title}" بنجاح.`);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function confirmDeleteImage(idx) {
+      const item = cfg.gallery[idx];
+      if (confirm(`هل أنت متأكد من رغبتك في حذف الصورة "${item.title}" نهائياً من المشروع؟`)) {
+        cfg.gallery.splice(idx, 1);
+        markDirty();
+        renderMediaCards();
+        showToast('تم حذف الصورة من القائمة بنجاح.', 'success');
+      }
+    }
+
+    // Add Image Modal Handlers
+    function openAddNewImageModal() {
+      document.getElementById('new-img-title').value = '';
+      document.getElementById('new-img-src').value = '';
+      document.getElementById('new-img-desc').value = '';
+      document.getElementById('add-image-modal').classList.add('open');
+    }
+
+    function syncNewCategoryName(cat) {
+      // helper
+    }
+
+    function updateNewImagePreview(val) {
+      const tag = document.getElementById('new-img-preview-tag');
+      if (tag && val) tag.src = val;
+    }
+
+    function handleNewImageFileUpload(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('new-img-preview-tag').src = e.target.result;
+          document.getElementById('new-img-src').value = e.target.result;
+          if (!document.getElementById('new-img-title').value) {
+            document.getElementById('new-img-title').value = file.name.replace(/\.[^/.]+$/, "");
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function confirmAddNewImage() {
+      const title = document.getElementById('new-img-title').value.trim();
+      const src = document.getElementById('new-img-src').value.trim();
+      const cat = document.getElementById('new-img-category').value;
+      const section = document.getElementById('new-img-section').value;
+      const desc = document.getElementById('new-img-desc').value.trim();
+
+      if (!title) {
+        alert('يرجى كتابة عنوان الصورة.');
+        return;
+      }
+      if (!src) {
+        alert('يرجى تحديد مسار الصورة أو رفع ملف.');
+        return;
+      }
+
+      const newItem = {
+        id: `img-${Date.now()}`,
+        title: title,
+        category: cat,
+        categoryName: CATEGORY_NAMES[cat] || 'معرض المشروع',
+        placeholderRef: `[PROJECT_IMAGE_${cfg.gallery.length + 1}]`,
+        imageSrc: src,
+        description: desc || title,
+        alt: title,
+        websiteSection: section
+      };
+
+      cfg.gallery.push(newItem);
+      markDirty();
+      closeModal('add-image-modal');
+      renderMediaCards();
+      showToast('تمت إضافة الصورة بنجاح إلى القائمة!');
+    }
+
+    // 6. Social Media Tab Logic
+    function renderSocialTab() {
+      const fb = cfg.socialMedia?.facebook || {};
+      const ig = cfg.socialMedia?.instagram || {};
+      const tt = cfg.socialMedia?.tiktok || {};
+
+      document.getElementById('social-fb-url').value = fb.url || cfg.facebookUrl || '';
+      document.getElementById('social-fb-toggle').checked = fb.enabled !== false;
+
+      document.getElementById('social-ig-url').value = ig.url || cfg.instagramUrl || '';
+      document.getElementById('social-ig-toggle').checked = ig.enabled !== false;
+
+      document.getElementById('social-tt-url').value = tt.url || cfg.tiktokUrl || '';
+      document.getElementById('social-tt-toggle').checked = tt.enabled !== false;
+    }
+
+    function updateSocialPreview() {
+      const fbUrl = document.getElementById('social-fb-url')?.value;
+      const igUrl = document.getElementById('social-ig-url')?.value;
+      const ttUrl = document.getElementById('social-tt-url')?.value;
+
+      const fbOn = document.getElementById('social-fb-toggle')?.checked;
+      const igOn = document.getElementById('social-ig-toggle')?.checked;
+      const ttOn = document.getElementById('social-tt-toggle')?.checked;
+
+      const previewContainer = document.getElementById('social-live-preview');
+      if (!previewContainer) return;
+
+      previewContainer.innerHTML = `
+        <span style="font-size: 0.75rem; color: #64748B; font-weight: 600; margin-left: 0.5rem;">الأيقونات النشطة:</span>
+        ${fbOn ? `
+          <a href="${fbUrl || '#'}" target="_blank" class="social-icon-btn fb" title="فيسبوك">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        ` : ''}
+        ${igOn ? `
+          <a href="${igUrl || '#'}" target="_blank" class="social-icon-btn ig" title="انستجرام">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        ` : ''}
+        ${ttOn ? `
+          <a href="${ttUrl || '#'}" target="_blank" class="social-icon-btn tt" title="تيك توك">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.1 15.68a6.34 6.34 0 0 0 10.82 4.48c1.77-1.77 2.38-4.37 2.38-6.84a8.2 8.2 0 0 0 4.83 1.57v-3.52a4.83 4.83 0 0 1-1.54-4.68z"/></svg>
+          </a>
+        ` : ''}
+        ${(!fbOn && !igOn && !ttOn) ? '<span style="color:#DC2626; font-size:0.75rem;">(كافة الأيقونات معطلة حالياً)</span>' : ''}
+      `;
+    }
+
+    // 7. Contacts Tab Logic
+    function renderContactsTab() {
+      document.getElementById('cfg-primary-call').value = cfg.primaryCallNumber || '';
+      document.getElementById('cfg-primary-wa').value = cfg.primaryWhatsAppNumber || '';
+      if (cfg.phoneNumbers) {
+        document.getElementById('cfg-phone-1').value = cfg.phoneNumbers[0] || '';
+        document.getElementById('cfg-phone-2').value = cfg.phoneNumbers[1] || '';
+        document.getElementById('cfg-phone-3').value = cfg.phoneNumbers[2] || '';
+        document.getElementById('cfg-phone-4').value = cfg.phoneNumbers[3] || '';
+      }
+    }
+
+    // 8. Board Tab Logic
+    function renderBoardTab() {
+      const boardContainer = document.getElementById('board-members-container');
+      if (boardContainer && cfg.boardOfDirectors) {
+        boardContainer.innerHTML = cfg.boardOfDirectors.map((m, idx) => `
+          <div class="admin-card" style="display: flex; gap: 1rem; align-items: center;">
+            <div style="flex: 1;">
+              <label style="font-size: 0.7rem; color: #64748B; font-weight: 700;">الاسم:</label>
+              <input type="text" value="${m.name}" oninput="cfg.boardOfDirectors[${idx}].name = this.value; markDirty()" class="admin-input">
+            </div>
+            <div style="flex: 1;">
+              <label style="font-size: 0.7rem; color: #64748B; font-weight: 700;">المنصب:</label>
+              <input type="text" value="${m.role}" oninput="cfg.boardOfDirectors[${idx}].role = this.value; markDirty()" class="admin-input">
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // 9. Video Tab Logic
+    function renderVideoTab() {
+      if (cfg.video) {
+        document.getElementById('cfg-video-title').value = cfg.video.title || '';
+        document.getElementById('cfg-video-src').value = cfg.video.videoSrc || '';
+        document.getElementById('cfg-video-thumb').value = cfg.video.thumbnailSrc || '';
+      }
+    }
+
+    // ==========================================
+    // 10. SAVE CHANGES (Multi-tier Persistent Save)
+    // ==========================================
+    async function saveAllChanges() {
+      const toast = showToast('جاري حفظ التغييرات على الخادم والدائم...', 'saving');
+
+      // Sync form fields into cfg object
+      // Contacts
+      cfg.primaryCallNumber = document.getElementById('cfg-primary-call')?.value || cfg.primaryCallNumber;
+      cfg.primaryWhatsAppNumber = document.getElementById('cfg-primary-wa')?.value || cfg.primaryWhatsAppNumber;
+      cfg.phoneNumbers = [
+        document.getElementById('cfg-phone-1')?.value || cfg.phoneNumbers[0],
+        document.getElementById('cfg-phone-2')?.value || cfg.phoneNumbers[1],
+        document.getElementById('cfg-phone-3')?.value || cfg.phoneNumbers[2],
+        document.getElementById('cfg-phone-4')?.value || cfg.phoneNumbers[3],
+      ];
+
+      // Social
+      const fbUrl = document.getElementById('social-fb-url')?.value;
+      const igUrl = document.getElementById('social-ig-url')?.value;
+      const ttUrl = document.getElementById('social-tt-url')?.value;
+
+      const fbOn = document.getElementById('social-fb-toggle')?.checked;
+      const igOn = document.getElementById('social-ig-toggle')?.checked;
+      const ttOn = document.getElementById('social-tt-toggle')?.checked;
+
+      cfg.facebookUrl = fbUrl;
+      cfg.instagramUrl = igUrl;
+      cfg.tiktokUrl = ttUrl;
+
+      cfg.socialMedia = {
+        facebook: { url: fbUrl, enabled: fbOn, label: "صفحة الفيسبوك الرسمية" },
+        instagram: { url: igUrl, enabled: igOn, label: "حساب الانستجرام الرسمي" },
+        tiktok: { url: ttUrl, enabled: ttOn, label: "حساب التيك توك الرسمي" }
+      };
+
+      // Video
+      if (document.getElementById('cfg-video-title')) {
+        if (!cfg.video) cfg.video = {};
+        cfg.video.title = document.getElementById('cfg-video-title').value;
+        cfg.video.videoSrc = document.getElementById('cfg-video-src').value;
+        cfg.video.thumbnailSrc = document.getElementById('cfg-video-thumb').value;
+      }
+
+      // Tier 0: IndexedDB via GoldenViewStorage (primary persistent store — no quota limits)
+      let idbSaved = false;
+      if (window.GoldenViewStorage && typeof GoldenViewStorage.saveConfig === 'function') {
+        try {
+          await GoldenViewStorage.saveConfig(cfg);
+          window.GOLDEN_VIEW_CONFIG = JSON.parse(JSON.stringify(cfg));
+          idbSaved = true;
+        } catch (idbErr) {
+          console.warn('IndexedDB save failed:', idbErr);
+        }
+      }
+
+      // Tier 1: LocalStorage Persistent Storage (fallback / mirror)
+      try {
+        localStorage.setItem('GOLDEN_VIEW_CONFIG_STORAGE', JSON.stringify(cfg));
+        if (!idbSaved) window.GOLDEN_VIEW_CONFIG = JSON.parse(JSON.stringify(cfg));
+      } catch (err) {
+        console.error('LocalStorage write error:', err);
+      }
+
+      // Tier 2: Next.js API Route Backend Persistence
+      let serverSaved = false;
+      try {
+        const res = await fetch('/api/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cfg)
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          serverSaved = true;
+        }
+      } catch (e) {
+        // Fetch failed (running on file:// or static server)
+      }
+
+      toast.remove();
+
+      if (serverSaved) {
+        clearDirty();
+        showToast('✅ تم الحفظ على الخادم بنجاح! التغييرات مطبقة على الموقع فوراً.', 'success');
+      } else if (idbSaved) {
+        clearDirty();
+        showToast('✅ تم الحفظ في IndexedDB (تخزين دائم بالمتصفح). التغييرات مفعلة فورياً.', 'success');
+      } else {
+        clearDirty();
+        showToast('⚠️ تم الحفظ في localStorage فقط. تأكد من دعم المتصفح لـ IndexedDB للتخزين الكامل.', 'success');
+      }
+    }
+
+    // ==========================================
+    // 11. JSON IMPORT & EXPORT
+    // ==========================================
+    function exportConfigJson() {
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(cfg, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute('href', dataStr);
+      a.setAttribute('download', 'golden-view-config.json');
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast('تم تصدير ملف golden-view-config.json بنجاح!');
+    }
+
+    function openImportModal() {
+      pendingImportConfig = null;
+      document.getElementById('import-error-box').style.display = 'none';
+      document.getElementById('import-preview-box').style.display = 'none';
+      document.getElementById('confirm-import-btn').style.display = 'none';
+      document.getElementById('json-file-input').value = '';
+      document.getElementById('import-json-modal').classList.add('open');
+    }
+
+    function handleJsonFileSelected(input) {
+      const errBox = document.getElementById('import-error-box');
+      const prevBox = document.getElementById('import-preview-box');
+      const confirmBtn = document.getElementById('confirm-import-btn');
+      errBox.style.display = 'none';
+      prevBox.style.display = 'none';
+      confirmBtn.style.display = 'none';
+
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+
+          // Validation
+          const validationErrors = validateConfig(parsed);
+          if (validationErrors.length > 0) {
+            errBox.innerHTML = `<strong>⚠️ خطأ في بنية الملف:</strong><br>${validationErrors.join('<br>')}`;
+            errBox.style.display = 'block';
+            return;
+          }
+
+          // Valid! Prepare preview
+          pendingImportConfig = parsed;
+          const summary = `
+            • اسم المشروع: <strong>${parsed.projectNameArabic || parsed.projectName}</strong><br>
+            • عدد الصور في المعرض: <strong>${(parsed.gallery && parsed.gallery.length) || 0} صورة</strong><br>
+            • أرقام المبيعات: <strong>${(parsed.phoneNumbers && parsed.phoneNumbers.join(' - ')) || 'غير محدد'}</strong><br>
+            • رابط الفيسبوك: <code dir="ltr">${parsed.facebookUrl || 'لا يوجد'}</code><br>
+            • رابط الانستجرام: <code dir="ltr">${parsed.instagramUrl || 'لا يوجد'}</code><br>
+            • رابط التيك توك: <code dir="ltr">${parsed.tiktokUrl || 'لا يوجد'}</code>
+          `;
+          document.getElementById('import-summary-list').innerHTML = summary;
+          prevBox.style.display = 'block';
+          confirmBtn.style.display = 'inline-block';
+        } catch (err) {
+          errBox.innerHTML = `<strong>⚠️ تعذر قراءة الملف كـ JSON صالح:</strong> ${err.message}`;
+          errBox.style.display = 'block';
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function validateConfig(obj) {
+      const errors = [];
+      if (!obj || typeof obj !== 'object') {
+        errors.push('الملف لا يحتوي على كائن JSON صالح.');
+        return errors;
+      }
+      if (!obj.projectName) errors.push('حقل اسم المشروع (projectName) مفقود.');
+      if (!obj.gallery || !Array.isArray(obj.gallery)) errors.push('حقل معرض الصور (gallery) مفقود أو ليس مصفوفة.');
+      if (!obj.phoneNumbers || !Array.isArray(obj.phoneNumbers)) errors.push('حقل أرقام الهواتف (phoneNumbers) مفقود.');
+      return errors;
+    }
+
+    async function applyImportedConfig() {
+      if (!pendingImportConfig) return;
+
+      if (!confirm('سيتم استبدال الإعدادات الحالية بإعدادات الملف المستورد وحفظها. هل تود الاستمرار؟')) {
+        return;
+      }
+
+      cfg = JSON.parse(JSON.stringify(pendingImportConfig));
+      closeModal('import-json-modal');
+      
+      initAdminUI();
+      await saveAllChanges();
+      showToast('تم استيراد وحفظ كافة الإعدادات بنجاح!');
+    }
+
+    // 12. Restore Defaults
+    function restoreDefaults() {
+      if (confirm('هل أنت متأكد من رغبتك في استعادة الإعدادات الافتراضية للمشروع؟ سيتم مسح التعديلات المؤقتة.')) {
+        localStorage.removeItem('GOLDEN_VIEW_CONFIG_STORAGE');
+        location.reload();
+      }
+    }
+
+    function closeModal(id) {
+      document.getElementById(id)?.classList.remove('open');
+    }
+
+    // ==========================================
+    // 13. LOGO MANAGEMENT TAB (Tab 6)
+    // ==========================================
+    function renderLogosTab() {
+      const cl = cfg.companyLogo || 'public/images/brand/el-mandara-company-logo.png';
+      const pl = cfg.projectLogo || 'public/images/brand/golden-view-compound-logo.png';
+      const companyPreview = document.getElementById('company-logo-preview');
+      const projectPreview = document.getElementById('project-logo-preview');
+      if (companyPreview) companyPreview.src = cl;
+      if (projectPreview) projectPreview.src = pl;
+    }
+
+    function handleCompanyLogoUpload(input) {
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const dataUrl = e.target.result;
+        cfg.companyLogo = dataUrl;
+
+        // Update all brand-company-logo elements on CMS page
+        document.querySelectorAll('.brand-company-logo').forEach(img => { img.src = dataUrl; });
+        document.getElementById('company-logo-filename').textContent = file.name;
+
+        // Persist to IndexedDB logo store
+        if (window.GoldenViewStorage && typeof GoldenViewStorage.saveLogo === 'function') {
+          try { await GoldenViewStorage.saveLogo('company', dataUrl, file.name); } catch(e) {}
+        }
+
+        markDirty();
+        showToast('✅ تم تحميل شعار الشركة. اضغط "حفظ" لتطبيقه على الموقع.');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleProjectLogoUpload(input) {
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const dataUrl = e.target.result;
+        cfg.projectLogo = dataUrl;
+
+        // Update all brand-project-logo elements on CMS page
+        document.querySelectorAll('.brand-project-logo').forEach(img => { img.src = dataUrl; });
+        document.getElementById('project-logo-filename').textContent = file.name;
+
+        // Persist to IndexedDB logo store
+        if (window.GoldenViewStorage && typeof GoldenViewStorage.saveLogo === 'function') {
+          try { await GoldenViewStorage.saveLogo('project', dataUrl, file.name); } catch(e) {}
+        }
+
+        markDirty();
+        showToast('✅ تم تحميل شعار المشروع. اضغط "حفظ" لتطبيقه على الموقع.');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', initAdminUI);
+
+    // Listen for storage hydration completion and refresh thumbnails & logos
+    window.addEventListener('golden_view_config_ready', (e) => {
+      if (e.detail && typeof e.detail === 'object') {
+        cfg = Object.assign({}, cfg, e.detail);
+        if (e.detail.gallery && Array.isArray(e.detail.gallery)) {
+          cfg.gallery = e.detail.gallery;
+        }
+        renderMediaCards();
+        renderLogosTab();
+      }
+    });
+  </script>
+</body>
+</html>
